@@ -74,11 +74,11 @@ $db['fd']['database'] = 'royalrain';
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
 $db['local']['password'] = '';
-$db['local']['database'] = 'royalrain';
+$db['local']['database'] = 'superliving';
 /**/
 
 
-$db['default'] = $db['host'];
+$db['default'] = $db['local'];
 
 
 $db['default']['dbdriver'] = 'mysql';

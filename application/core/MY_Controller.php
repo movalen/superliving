@@ -74,16 +74,20 @@ class Public_Controller extends Base_Controller {
  * Admin Controller
  * Required login
  */
-class Admin_Controller extends Base_Controller {
- 
-    public function __construct() {
+class Admin_each_Controller extends Base_Controller {
+	public function __construct() {
         parent::__construct();
         $this->template->title("Admin");
 		$this->template->set_layout("admin/layout");
-
-	#	if(!permission('int_admin', 'extra')) {
-		#	redirect('');
-	#	}
+	}
+}
+class Admin_Controller extends Admin_each_Controller {
+    public function __construct() {
+        parent::__construct();
+		
+		if(!is_login()) {
+			redirect('admin/signin');
+		}
 	} 
 }
 

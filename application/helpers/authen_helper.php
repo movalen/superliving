@@ -1,4 +1,35 @@
 <?php
+
+if(!function_exists('is_login')) {
+	function is_login() {
+		$CI =& get_instance();
+		
+		if($CI->session->userdata('id')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+
+if(!function_exists('login')) {
+	function login($user, $pass){
+		$CI =& get_instance();
+		$foo = new User();
+		$foo->where('user',$user)
+			->where('pass', $pass)
+			->get(1);
+		
+		if($foo->id) {
+			$CI->session->set_userdata('id', $foo->id);
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
 /*
 if(!function_exists("login")) {
 	function login($username,$password) {
