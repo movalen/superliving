@@ -45,11 +45,18 @@
         <script src="media/template/admin/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<style teyp='text/css'>
+		html, body{
+		  height:100%;
+		  margin:0px;
+		  padding:0px;
+		}
+	</style>
 </head>
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" style='height:100%;'>
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -189,10 +196,9 @@
                 <ul class="nav navbar-nav side-nav">
                 	<?
                 		foreach($menu as $title => $attr) {
-                			echo "<li ";
+            				echo "<li ";
 								echo (in_array($path_info, $attr['active']))?'class="active"':null; 
                 			echo ">";
-								
                 				echo anchor($attr['link'], ucfirst($title));
                 			echo "</li>";
                 		}
@@ -236,8 +242,8 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper">
-        	<div class="container-fluid">
+        <div id="page-wrapper" style='padding-top:60px; min-height:100%; background:#fff;'>
+        	<div class="container-fluid" style=''>
         		<? echo $template['body']; ?></div>
             <!-- /.container-fluid -->
         </div>

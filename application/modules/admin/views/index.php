@@ -1,4 +1,1 @@
-<hr>
-modules/admin/views/index.php 
-<hr>
-ทดสอบ
+Admin Dashboard

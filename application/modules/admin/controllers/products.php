@@ -10,7 +10,7 @@ class Products extends Admin_Controller {
 			echo 0;
 			return false;
 		} else {
-			$data['parent'] = new Categorys();
+			$data['parent'] = new Category();
 			$data['parent']->where('parent_id', $id);
 			$data['parent']->get();
 			
@@ -21,13 +21,22 @@ class Products extends Admin_Controller {
 			} else {
 				echo '<option value="">--หมวดหมู่ย่อย--</option>';
 				foreach($data['parent'] as $item) {
-					echo '<option value="'.$item->id.'">';
-						echo $item->title;
-					echo '</option>';
+					echo '<option value="'.$item->id.'">'.$item->title.'</option>';
 				}
-			}
-				
+			}	
 		}
+	}
+	
+	public function delete_image($id = false) {
+		if(!$id) { redirect('admin/product'); }
+		$data = new Product($id);
+		unlink($data->path_image);
+		$data->path_image = null;
+		unlink($data->path_thumb);
+		$data->path_thumb = null;
+		$data->save();
+		
+		redirect('admin/products/form/'.$id);
 	}
 	
 	
@@ -47,43 +56,69 @@ class Products extends Admin_Controller {
 
 	public function save($id = false) {
 		$data['rs']  = new Product($id);
-		$data['rs']->from_array($_POST);
-		$data['rs']->save();
 		
-		redirect('admin/product');
+		//Upload files
+			//Clear old image
+				if(!empty($data['rs']->path_thumb)) {
+					unlink($data['rs']->path_thumb);
+					$_POST['path_thumb'] = '';
+				}
+				if(!empty($data['rs']->path_image)) {
+					unlink($data['rs']->path_image);
+					$_POST['path_image'] = '';
+				}
+			//End - clear old image
+			
+
+			$config['upload_path'] = 'uploads/product';
+			$config['allowed_types'] = 'jpg|gif|png';
+			$config['create_thumb'] = true;
+			#$config['max_height'] =
+			#$config['max_width'] = 
+			
+			$this->load->library('upload', $config);
+			if($this->upload->do_upload('path_image')) {
+				$file = $this->upload->data();
+				$file_name = uniqid();
+				$_POST['path_image'] = 'uploads/product/'.$file_name.$file['file_ext'];
+				$_POST['path_thumb'] = 'uploads/product/'.$file_name.'_thumb'.$file['file_ext'];
+				rename($file['full_path'], $_POST['path_image']);
+				
+				//create - Thumbnail
+				$config['image_library'] = 'gd2';
+				$config['source_image'] =  $_POST['path_image'];
+				$config['width'] = 50;
+				$config['height'] = 50;
+				$config['create_thumb'] = true;
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+
+				//end - create - thumbnail
+			} else {
+				echo $this->upload->display_error();
+			}
+		//End - upload files
+
+		//save data
+			
+			$data['rs']->from_array($_POST);
+			$data['rs']->save();
+		//End - save data
+
+		redirect('admin/products');
 	}
 	
 	public function delete($id = false) {
 		$data['rs'] = new Product($id);
-		$link = (empty($data['rs']->parent_id)) ? 'admin/product' : 'admin/product/sub_index/'.$data['rs']->parent_id ;
-		if($id) {
-			$data['rs']->delete();	
-		}	
-		redirect($link);
-	}
-	/*
-	//--Sub product
-	public function sub_index($id = false) {
-		$data['cat'] = new Product($id);
-		$data['cat']->get(1);
-		
-		$data['row'] = new Product();
-		$data['row']->where('parent_id', $id);
-		$data['row']->get_page();
-		
-		$data['no'] = 0;
-		
-		$this->template->build('product/sub_index', @$data);
-	}
-	
-	public function sub_form($parent_id = false, $id = false) {
-		$data['parent'] = new Product($parent_id);
-		$data['parent']->get(1);
-		
-		$data['rs'] = new Product($id);
-		
-		$this->template->build('product/sub_form', @$data);
-	}
-	 */
-	 	
+		if(!empty($data['rs']->path_thumb)) {
+			unlink($data['rs']->path_thumb);
+			$_POST['path_thumb'] = '';
+		}
+		if(!empty($data['rs']->path_image)) {
+			unlink($data['rs']->path_image);
+			$_POST['path_image'] = '';
+		}
+		$data['rs']->delete();
+		redirect('admin/products');
+	}	 	
 }

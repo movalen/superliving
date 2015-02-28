@@ -34,7 +34,7 @@
 
 <div class="col-lg-12">
     <h1 class="page-header">
-    	สินค้า <?php if(!empty($rs->id)) { echo ' > ('.$rs->title.')'; } ?> 
+    	สินค้า <?php if(!empty($rs->id)) { echo ' > ('.$rs->model_number.')'; } ?> 
     </h1>
 </div>
 
@@ -42,17 +42,17 @@
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >หมวดหมู่สินค้า</label>
-		<div class="col-lg-4"><?php echo form_dropdown(false, get_option('id', 'title', 'category where parent_id is null'), @$rs->category_id, 'id="category" class="form-control" style="width:auto;"', '--ประเภทสินค้า--'); ?></div>
+		<div class="col-lg-4"><?php echo form_dropdown(false, get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '--ประเภทสินค้า--'); ?></div>
 	</div>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >หมสวดหมู่ย่อย</label>
 		<div class="col-lg-4">
 			<?php
-				if(empty($rs->category_id)) {
+				if(empty($rs->category->parent->id)) {
 					echo form_dropdown('category_id', array(), false, 'class="form-control" disabled="true"', '--กรุณาเลือกหมวดหมู่สินค้า--');
 				} else {
-					$cat_option = @(get_option('id', 'title', "category where parent_id = '".@$rs->category_id."'"))?get_option('id', 'title', "category where parent_id = '".$rs->category_id."'"):array();
-					echo form_dropdown('category_id', $cat_option, false, 'class="form-control"', '--หมวดหมู่ย่อย--');
+					$cat_option = @(get_option('id', 'title', "category where parent_id = '".@$rs->category->parent->id."'"))?get_option('id', 'title', "category where parent_id = '".$rs->category->parent->id."'"):array();
+					echo form_dropdown('category_id', $cat_option, @$rs->category_id, 'class="form-control"', '--หมวดหมู่ย่อย--');
 				}	
 			?>
 		</div>
@@ -67,7 +67,13 @@
 	</div>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >ภาพประกอบ</label>
-		<div class="col-lg-4"><input type='file'></div>
+		<div class="col-lg-4">
+			<? if(!empty($rs->path_thumb)) {
+				echo anchor('admin/products/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-sm btn-danger" style="position:absolute; margin:10px;"');
+				echo "<img src='".$rs->path_image."' class='thumbnail'><hr>";
+			} ?>
+			<input type='file' name='path_image'>
+		</div>
 	</div>
 	
 	<div class="form-group">
