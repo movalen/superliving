@@ -55,21 +55,6 @@ $db['default']['password'] = '';
 $db['default']['database'] = 'c1royalrain';
 /**/
 
-
-//Server
-$db['host']['hostname'] = 'mysql1.favouritehosting.com';
-$db['host']['username'] = 'c1royalrain';
-$db['host']['password'] = 'roy@l1*';
-$db['host']['database'] = 'c1royalrain';
-/**/
-
-//P'Yot
-$db['fd']['hostname'] = '192.168.1.222';
-$db['fd']['username'] = 'root';
-$db['fd']['password'] = 'password';
-$db['fd']['database'] = 'royalrain';
-/**/
-
 //Localhost
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
