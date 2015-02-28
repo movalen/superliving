@@ -48,8 +48,9 @@
         <div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#about">Product</a></li>
-				<li><a href="#contact">Catagory</a></li>
+				<li><a href="admin/category">Category</a></li>
+				<li><a href="admin/product">Product</a></li>
+				
            		<li><a href='#gallery'>Gallery</a></li>
            		<li><a href='#catralogs'>Catalogs</a></li>
            		<li><a href='#about us'>About us</a></li>
