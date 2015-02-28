@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  	<base href="<?php echo base_url()?>" ></base>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +12,8 @@
 
     <title>Theme Template for Bootstrap</title>
 
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	
    <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	
@@ -60,7 +63,8 @@
       </div>
     </nav>
 
-    <div class="container theme-showcase" role="main">
+    <div class="container theme-showcase" role="main" style='padding-top:53px;'>
+    	<?php echo $template["body"]?>
 <? /*
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
