@@ -78,7 +78,7 @@ class Admin_each_Controller extends Base_Controller {
 	public function __construct() {
         parent::__construct();
         $this->template->title("Admin");
-		$this->template->set_layout("admin/layout");
+		$this->template->set_layout("admin/startbootstrap-sb-admin-1.0.0/index");
 	}
 }
 class Admin_Controller extends Admin_each_Controller {

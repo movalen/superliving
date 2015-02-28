@@ -1,4 +1,4 @@
-<h3><? echo anchor('admin/category', 'ประเภทสินค้า '); ?>> <? echo $cat->title; ?></h3>
+<h3><? echo anchor('admin/categorys', 'ประเภทสินค้า '); ?>> <? echo $cat->title; ?></h3>
 <hr>
 
 <table class="table table-striped">
@@ -9,7 +9,7 @@
 			<th style="width:50px;">ลำดับ</th>
 			<th>รายละเอียด</th>
 			<th class='text-center' style="width:140px;">
-				<? echo anchor('admin/category/sub_form/'.$cat->id, '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
+				<? echo anchor('admin/categorys/sub_form/'.$cat->id, '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -37,8 +37,9 @@
 					<td><? echo $item->title; ?></td>
 					<td class='text-center'>
 						<? 
-							echo anchor('admin/category/sub_form/'.$cat->id.'/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
-							echo anchor('admin/category/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"'); 
+							echo 'admin/categorys/sub_form/'.$cat->id.'/'.$item->id;
+							echo anchor('admin/categorys/sub_form/'.$cat->id.'/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
+							echo anchor('admin/categorys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"'); 
 						?>
 					</td>
 				</tr>
@@ -56,7 +57,7 @@
 		$('button[data-loading-text]').click(function () {
 			var btn = $(this);
 		    var id = btn.attr("id");
-		    $.post("admin/switch_status/category/"+id, function(data){
+		    $.post("admin/switch_status/categorys/"+id, function(data){
 		    	if(data == 1) {
 		    		btn.removeClass("btn-danger");
 		    		btn.addClass("btn-primary");

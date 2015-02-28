@@ -1,4 +1,4 @@
-<h3>ประเภทสินค้า</h3>
+<h3>สินค้า</h3>
 <hr>
 
 <table class="table table-striped">
@@ -6,10 +6,12 @@
 		<tr>
 			<th style="width:50px;">#</th>
 			<th style="width:80px;">สถานะ</th>
-			<th style="width:50px;">ลำดับ</th>
-			<th>รายละเอียด</th>
+			<th style="width:100px;">Thumbnail</th>
+			<th style="width:100px;">หมวดหมู่สินค้า</th>
+			<th>Model Number</th>
+			<th>Size</th>
 			<th class='text-center' style="width:140px;">
-				<? echo anchor('admin/category/form', '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
+				<? echo anchor('admin/products/form', '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -33,14 +35,14 @@
 							class="btn <? echo $btn_status['class']; ?>" 
 							data-loading-text="บันทึก..." ><? echo $btn_status['label']; ?></button>
 					</td>
-					<td><? echo (empty($item->ordinal_index))?'-':$item->ordinal_index; ?></td>
-					<td><? echo anchor('admin/category/sub_index/'.$item->id, $item->title); ?> (<? echo count($item->child->all); ?>)</td>
+					<td></td>
+					<td><? echo $item->categorys->title; ?></td>
+					<td><? echo $item->model_number; ?></td>
+					<td><? echo $item->model_size; ?></td>
 					<td class='text-center'>
 						<? 
-							echo anchor('admin/category/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
-							if(count($item->child->all) == 0) {
-								echo anchor('admin/category/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"');
-							} 
+							echo anchor('admin/products/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
+							echo anchor('admin/products/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"');
 						?>
 					</td>
 				</tr>
@@ -58,7 +60,7 @@
 		$('button[data-loading-text]').click(function () {
 			var btn = $(this);
 		    var id = btn.attr("id");
-		    $.post("admin/switch_status/category/"+id, function(data){
+		    $.post("admin/switch_status/product/"+id, function(data){
 		    	if(data == 1) {
 		    		btn.removeClass("btn-danger");
 		    		btn.addClass("btn-primary");

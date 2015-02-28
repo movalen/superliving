@@ -19,7 +19,7 @@
     </h1>
 </div>
 
-<form class="form-horizontal" role="form" action="admin/category/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
+<form class="form-horizontal" role="form" action="admin/categorys/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? 
 		echo form_hidden('parent_id', $parent->id);
 		echo form_hidden('status', (empty($rs->status))?1:$rs->status); 
@@ -32,7 +32,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> ยีนยัน</button>
-			<? echo anchor('admin/category/sub_index/'.$parent->id, 'ยกเลิก', 'class="btn btn-danger"'); ?>
+			<? echo anchor('admin/categorys/sub_index/'.$parent->id, 'ยกเลิก', 'class="btn btn-danger"'); ?>
 		</div>
 	</div>
 </form>

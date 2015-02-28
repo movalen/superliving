@@ -2,22 +2,23 @@
 /**
  * User Model
  */
-class ModelCategory extends ORM {
+class Category extends ORM {
 	
 	var $table = "category";
 	
 	public $has_one = array(
 		'parent' => array(
-            'class' => 'ModelCategory',
+            'class' => 'category',
             'other_field' => 'child'
         )
 	);
 	
 	public $has_many = array(
 		'child' => array(
-            'class' => 'ModelCategory',
+            'class' => 'category',
             'other_field' => 'parent'
-        )
+        ),
+        'product'
 	);
 	
 	function __construct($id=null) {

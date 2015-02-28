@@ -13,7 +13,7 @@ class Admin extends Admin_Controller {
 	
 	
 	public function switch_status($model,$id) {
-		$model = 'Model'.ucfirst($model);
+		$model = ucfirst($model);
 		$foo = new $model($id);
 		$foo->status = ($foo->status == 1)?0:1;
 		$foo->save();
