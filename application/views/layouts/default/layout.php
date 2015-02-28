@@ -88,7 +88,7 @@
 	                </p>
 	            </div>
 	        </div>
-	        COPYRIGHT © 1992-2015 Mainland International Group
+	        COPYRIGHT © Super Living Co.,Ltd.
         <!-- /.row -->
 	   	</div>
 	</div>
