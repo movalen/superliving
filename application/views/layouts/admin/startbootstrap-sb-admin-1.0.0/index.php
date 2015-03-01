@@ -69,7 +69,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="media/template/admin/index.html">SB Admin</a>
+                
             </div>
+            <? echo anchor('admin/signout', 'Sign out', 'class="btn btn-danger" style="float:right; margin:10px;"'); ?>
             <? /*
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav sr-only">
@@ -176,31 +178,79 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <?
             	$path_info = @explode('/', $_SERVER['PATH_INFO'])[2];
-				
 				$menu = array(
 					'หน้าแรก' => array(
 						'link' => 'admin',
 						'active' => array('', 'index')
 					),
-            		'ประเภทสินค้า' => array(
-            			'link' => 'admin/categorys',
-            			'active' => array('categorys')
+					'ข้อมูลสินค้า' => array(
+						'type' => 'collape',
+						'name' => 'product',
+						'child' => array(
+							'ประเภทสินค้า' => array(
+		            			'link' => 'admin/categorys',
+		            			'active' => array('categorys')
+							),
+							'สินค้า' => array(
+								'link' => 'admin/products',
+								'active'=>array('products')
+							)
+						)
 					),
-					'สินค้า' => array(
-						'link' => 'admin/products',
-						'active'=>array('products')
-					)
+					'อัลบั้มภาพ' => array(
+						'link' => 'admin/gallerys',
+						'active' => array('gallerys')
+					),
+					'แค็ตตาล็อก' => array(
+						'link' => 'admin/catalogs',
+						'active' => array('catalogs')
+					),
+					'ผู้ใช้งาน' => array(
+						'link' => 'admin/users',
+						'active' => array('users')
+					),
 				);
 			?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                 	<?
                 		foreach($menu as $title => $attr) {
-            				echo "<li ";
-								echo (in_array($path_info, $attr['active']))?'class="active"':null; 
-                			echo ">";
-                				echo anchor($attr['link'], ucfirst($title));
-                			echo "</li>";
+                			if(@$attr['type'] != 'collape') {
+                				echo "<li ";
+									echo (in_array($path_info, $attr['active']))?'class="active"':null; 
+	                			echo ">";
+	                				echo anchor($attr['link'], ucfirst($title));
+	                			echo "</li>";
+                			} else {
+                				//Check active
+                				$active = 0;
+                				foreach($attr['child'] as $c_title => $c_attr) {
+                					if(in_array($path_info, $c_attr['active'])) {
+                						$active = 1;
+                					}
+                				}
+								
+								
+                				echo '<li ';
+									echo ($active == 1)?'class="active"':null;
+                				echo '>';
+									echo '<a href="javascript:;" data-toggle="collapse" data-target="#'.$attr['name'].'">'.$title.' <i class="fa fa-fw fa-caret-down"></i></a>';
+									echo '<ul id="'.$attr['name'].'" class="collapse ';
+										echo ($active == 1)?'in':null;
+									echo '">';
+										foreach($attr['child'] as $c_title => $c_attr) {
+											echo '<li>';
+											
+												echo '<a href="'.$c_attr['link'].'" ';
+													echo (in_array($path_info, $c_attr['active']))?'style="font-weight:bold; color:#fff;"':null;
+												echo '>';
+													echo $c_title;
+												echo '</a>';
+											echo '</li>';
+										}
+									echo '</ul>';
+								echo '</li>';
+                			}
                 		}
                 	?>
                 	<!--

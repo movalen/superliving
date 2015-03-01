@@ -30,6 +30,12 @@ if(!function_exists('login')) {
 	}
 }
 
+if(!function_exists('logout')) {
+	function logout() {
+		$CI =& get_instance();
+		$CI->session->unset_userdata('id');
+	}
+}
 /*
 if(!function_exists("login")) {
 	function login($username,$password) {

@@ -48,7 +48,7 @@
 <div style="height:100%; background:#222; text-align:center;">
 	<form method='post' action='' style='padding-top:20%;'>
 		<div class='input_txt label'>Sign in </div>
-		<div class='input_txt'><input type='text' name='user' class="form-control" placeholder="Username"></div>
+		<div class='input_txt'><input type='text' name='user' class="form-control" placeholder="Username" autofocus></div>
 		<div class='input_txt'><input type='password' name='pass' class="form-control" placeholder="Password"></div>
 		<div class='input_txt'><input type='submit' value='Sign in' class="btn btn-warning "></div>
 	</form>

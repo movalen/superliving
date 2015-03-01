@@ -1,0 +1,90 @@
+<h3>อัลบั้มภาพ</h3>
+<hr>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th style="width:50px;">#</th>
+			<th style="width:80px;">สถานะ</th>
+			<th style="width:150px;">ภาพตัวอย่าง</th>
+			<th>ชื่ออัลบั้ม</th>
+			<th>จำนวนภาพในอัลบั้ม</th>
+			<th class='text-center' style="width:140px;">
+				<? echo anchor('admin/gallerys/form', '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?
+			if(count($row->all) == 0) {
+				echo '<tr><td colspan="5" class="text-center" style="color:#aaa;"> ไม่พบข้อมูล</td></tr>';
+			}
+			foreach($row as $item) {
+				$no++;
+				$btn_status = array(
+					'label' => ($item->status == 1)?'On':'Off',
+					'class' => ($item->status == 1)?'btn-primary':'btn-danger'
+				);
+			?>
+				<tr>
+					<td><? echo $no; ?></td>
+					<td>
+						<button type="button" 
+							id="<?php echo $item->id; ?>" 
+							class="btn btn-sm <? echo $btn_status['class']; ?>" 
+							data-loading-text="บันทึก..." ><? echo $btn_status['label']; ?></button>
+					</td>
+					<td class='text-center'>
+						<? echo (empty($item->path_cover))?'n/a':'<img class="thumb" src="'.$item->path_cover.'" style="width:140px; height:75px;">'; ?>
+					</td>
+					<td><? echo anchor('admin/gallery_dtls/index/'.$item->id, $item->title); ?></td>
+					<td class='text-center'><? echo '('.count($item->gallery_dtl->all).')'; ?></td>
+					<td class='text-center'>
+						<? 
+							echo anchor('admin/gallerys/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
+							if(count($item->gallery_dtl->all) == 0) {
+								echo anchor('admin/gallerys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"');
+							}	
+						?>
+					</td>
+				</tr>
+				<?
+				
+			}
+		?>
+	</tbody>
+</table>
+
+<div class='text-center'><? echo $row->pagination(); ?></div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//Switch status
+			$('button[data-loading-text]').click(function () {
+				var btn = $(this);
+			    var id = btn.attr("id");
+			    $.post("admin/switch_status/gallery/"+id, function(data){
+			    	if(data == 1) {
+			    		btn.removeClass("btn-danger");
+			    		btn.addClass("btn-primary");
+			    		btn.html('On');
+			    	} else if(data == 0) {
+			    		btn.removeClass("btn-primary");
+			    		btn.addClass("btn-danger");
+			    		btn.html('Off');
+			    	}
+			    });
+			    return false;
+			});
+		//End - switch status
+		
+		//Modal active
+			$('#fullImage').on('show.bs.modal', function (event) {
+			 	var button = $(event.relatedTarget);
+			 	var modal = $(this)
+				modal.find('.modal-title').text('Model number : '+button.data('title'));
+				modal.find('.modal-body').html('<img src="'+button.data('image')+'">');
+			})
+		//End - modal
+	});
+</script>

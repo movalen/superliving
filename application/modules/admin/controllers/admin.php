@@ -19,4 +19,9 @@ class Admin extends Admin_Controller {
 		$foo->save();
 		echo $foo->status;
 	}
+	
+	public function signout() {
+		logout();
+		redirect('admin');
+	}
 }
