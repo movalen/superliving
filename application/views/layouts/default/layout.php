@@ -53,6 +53,16 @@
             <!-- /.navbar-collapse -->
             <div style="font-size: 12px;border-top: 1px solid #ff5f01;width:100%;text-align: center">
 	        	<ul class="nav navbar-nav product_list" style="display:inline-block;text-align:center;float:none !important;">
+	        		<?
+	        			$category = new Category();
+						$category->where('parent_id is null');
+						$category->get();
+						
+	        			foreach($category as $item) {
+	        				echo '<li><a href="product/'.$item->id.'">'.$item->title.'</a></li>';
+	        			}
+	        		?>
+	        		<!--
 			        <li <?php echo (@$active=='product_list')?'class="active"':''; ?>><a href="product_list">TILES</a></li>
 			        <li><a href="product_list">DOORS</a></li>
 			        <li><a href="product_list">WINDOWS</a></li>
@@ -65,6 +75,7 @@
 			        <li><a href="product_list">OUTROOM</a></li>
 			        <li><a href="product_list">LIGHTING</a></li>
 			        <li><a href="product_list">DECOR</a></li>
+			        -->
 			    </ul>
 			</div>
         </div>
