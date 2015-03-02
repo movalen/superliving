@@ -68,7 +68,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="media/template/admin/index.html">SB Admin</a>
+                <a class="navbar-brand" href="media/template/admin/index.html">Back office</a>
                 
             </div>
             <? echo anchor('admin/signout', 'Sign out', 'class="btn btn-danger" style="float:right; margin:10px;"'); ?>
@@ -206,10 +206,24 @@
 						'link' => 'admin/catalogs',
 						'active' => array('catalogs')
 					),
+					'Contact' => array(
+						'type' => 'collape',
+						'name' => 'contact',
+						'child' => array(
+							'About us' => array(
+								'link' => 'admin/about_us',
+								'active' => array('about_us')
+							),
+							'Contact us' => array(
+								'link' => 'admin/contact_us',
+								'active' => array('contact_us')
+							)
+						)
+					),
 					'User' => array(
 						'link' => 'admin/users',
 						'active' => array('users')
-					),
+					)
 				);
 			?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">

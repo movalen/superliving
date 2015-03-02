@@ -15,7 +15,7 @@
 
 <div class="col-lg-12">
     <h1 class="page-header">
-    	Profiles 
+    	User <?php if(!empty($rs->id)) { echo ' > ('.$rs->user.')'; } ?> 
     </h1>
 </div>
 
