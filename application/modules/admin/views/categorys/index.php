@@ -1,15 +1,15 @@
-<h3>ประเภทสินค้า</h3>
+<h3>Category</h3>
 <hr>
 
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th style="width:50px;">#</th>
-			<th style="width:80px;">สถานะ</th>
-			<th style="width:50px;">ลำดับ</th>
-			<th>รายละเอียด</th>
-			<th class='text-center' style="width:140px;">
-				<? echo anchor('admin/categorys/form', '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
+			<th style="width:80px;">Status</th>
+			<th style="width:50px;">Index</th>
+			<th>Title</th>
+			<th class='text-center' style="width:165px;">
+				<? echo anchor('admin/categorys/form', '<span class="glyphicon glyphicon-plus"></span> Add', 'class="btn btn-sm btn-info"'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -31,15 +31,15 @@
 						<button type="button" 
 							id="<?php echo $item->id; ?>" 
 							class="btn <? echo $btn_status['class']; ?>" 
-							data-loading-text="บันทึก..." ><? echo $btn_status['label']; ?></button>
+							data-loading-text="Loading..." ><? echo $btn_status['label']; ?></button>
 					</td>
 					<td><? echo (empty($item->ordinal_index))?'-':$item->ordinal_index; ?></td>
 					<td><? echo anchor('admin/categorys/sub_index/'.$item->id, $item->title); ?> (<? echo count($item->child->all); ?>)</td>
 					<td class='text-center'>
 						<? 
-							echo anchor('admin/categorys/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
+							echo anchor('admin/categorys/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Edit', 'class="btn btn-sm btn-warning"').' ';
 							if(count($item->child->all) == 0) {
-								echo anchor('admin/categorys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"');
+								echo anchor('admin/categorys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> Delete', 'class="btn btn-delete btn-sm btn-danger"');
 							} 
 						?>
 					</td>

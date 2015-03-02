@@ -34,18 +34,18 @@
 
 <div class="col-lg-12">
     <h1 class="page-header">
-    	สินค้า <?php if(!empty($rs->id)) { echo ' > ('.$rs->model_number.')'; } ?> 
+    	Product <?php if(!empty($rs->id)) { echo ' > ('.$rs->model_number.')'; } ?> 
     </h1>
 </div>
 
 <form class="form-horizontal" role="form" action="admin/products/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >หมวดหมู่สินค้า</label>
+		<label for="title" class="col-sm-2 control-label" >Category : </label>
 		<div class="col-lg-4"><?php echo form_dropdown(false, get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '--ประเภทสินค้า--'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >หมสวดหมู่ย่อย</label>
+		<label for="title" class="col-sm-2 control-label" >Sub category : </label>
 		<div class="col-lg-4">
 			<?php
 				if(empty($rs->category->parent->id)) {
@@ -58,18 +58,18 @@
 		</div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Model number</label>
+		<label for="title" class="col-sm-2 control-label" >Model number : </label>
 		<div class="col-lg-4"><?php echo form_input('model_number', @$rs->model_number, 'class="form-control"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Size</label>
+		<label for="title" class="col-sm-2 control-label" >Size : </label>
 		<div class="col-lg-4"><?php echo form_input('model_size', @$rs->model_size, 'class="form-control"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >ภาพประกอบ</label>
+		<label for="title" class="col-sm-2 control-label" >Image : </label>
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_thumb)) {
-				echo anchor('admin/products/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-sm btn-danger" style="position:absolute; margin:10px;"');
+				echo anchor('admin/products/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
 				echo "<img src='".$rs->path_image."' class='thumbnail'><hr>";
 			} ?>
 			<input type='file' name='path_image'>
@@ -78,8 +78,8 @@
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> ยีนยัน</button>
-			<? echo anchor('admin/products/', 'ยกเลิก', 'class="btn btn-danger"'); ?>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> Save</button>
+			<? echo anchor('admin/products/', 'Back', 'class="btn btn-danger"'); ?>
 		</div>
 	</div>
 </form>

@@ -15,7 +15,7 @@
 
 <div class="col-lg-12">
     <h1 class="page-header">
-    	หมวดหมู่ย่อย <?php if(!empty($parent->id)) { echo ' ('.$parent->title.')'; } if(!empty($rs->id)) { echo ' > '.$rs->title; }  ?> 
+    	Sub category <?php if(!empty($parent->id)) { echo ' ('.$parent->title.')'; } if(!empty($rs->id)) { echo ' > '.$rs->title; }  ?> 
     </h1>
 </div>
 
@@ -25,14 +25,14 @@
 		echo form_hidden('status', (empty($rs->status))?1:$rs->status); 
 	?>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >ประเภทเรื่อง</label>
+		<label for="title" class="col-sm-2 control-label" >Title : </label>
 		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control" autofocus'); ?></div>
 	</div>
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> ยีนยัน</button>
-			<? echo anchor('admin/categorys/sub_index/'.$parent->id, 'ยกเลิก', 'class="btn btn-danger"'); ?>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> Save</button>
+			<? echo anchor('admin/categorys/sub_index/'.$parent->id, 'Back', 'class="btn btn-danger"'); ?>
 		</div>
 	</div>
 </form>

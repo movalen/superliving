@@ -26,20 +26,20 @@
 	</div>
 <!-- End - Modal#fullImage -->
 
-<h3>สินค้า</h3>
+<h3>Product</h3>
 <hr>
 
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th style="width:50px;">#</th>
-			<th style="width:80px;">สถานะ</th>
-			<th style="width:100px;">ภาพตัวอย่าง</th>
-			<th style="width:100px;">หมวดสินค้า</th>
+			<th style="width:80px;">Status</th>
+			<th style="width:100px;">Thumbnail</th>
+			<th style="width:100px;">Category</th>
 			<th>Model Number</th>
 			<th>Size</th>
-			<th class='text-center' style="width:140px;">
-				<? echo anchor('admin/products/form', '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
+			<th class='text-center' style="width:165px;">
+				<? echo anchor('admin/products/form', '<span class="glyphicon glyphicon-plus"></span> Add', 'class="btn btn-sm btn-info"'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -72,8 +72,8 @@
 					<td><? echo $item->model_size; ?></td>
 					<td class='text-center'>
 						<? 
-							echo anchor('admin/products/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
-							echo anchor('admin/products/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"');
+							echo anchor('admin/products/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Edit', 'class="btn btn-sm btn-warning"').' ';
+							echo anchor('admin/products/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> Delete', 'class="btn btn-delete btn-sm btn-danger"');
 						?>
 					</td>
 				</tr>

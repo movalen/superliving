@@ -34,21 +34,21 @@
 
 <div class="col-lg-12">
     <h1 class="page-header">
-    	อัลบั้มภาพ <?php if(!empty($rs->id)) { echo ' > ('.$rs->title.')'; } ?> 
+    	Gallery <?php if(!empty($rs->id)) { echo ' > ('.$rs->title.')'; } ?> 
     </h1>
 </div>
 
 <form class="form-horizontal" role="form" action="admin/gallerys/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >ชื่ออัลบั้ม</label>
+		<label for="title" class="col-sm-2 control-label" >Title : </label>
 		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >ภาพปก</label>
+		<label for="title" class="col-sm-2 control-label" >Cover image : </label>
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_cover)) {
-				echo anchor('admin/gallerys/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-sm btn-danger" style="position:absolute; margin:10px;"');
+				echo anchor('admin/gallerys/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
 				echo "<img src='".$rs->path_cover."' class='thumbnail'><hr>";
 			} ?>
 			<input type='file' name='path_cover'>
@@ -57,8 +57,8 @@
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> ยีนยัน</button>
-			<? echo anchor('admin/gallerys/', 'ยกเลิก', 'class="btn btn-danger"'); ?>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" ></span> Save</button>
+			<? echo anchor('admin/gallerys/', 'Back', 'class="btn btn-danger"'); ?>
 		</div>
 	</div>
 </form>

@@ -177,35 +177,36 @@
              */ ?>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <?
-            	$path_info = @explode('/', $_SERVER['PATH_INFO'])[2];
+            	$path_info = @explode('/', $_SERVER['PATH_INFO']);
+				$path_info = @$path_info[2];
 				$menu = array(
-					'หน้าแรก' => array(
+					'Home' => array(
 						'link' => 'admin',
 						'active' => array('', 'index')
 					),
-					'ข้อมูลสินค้า' => array(
+					'Product data' => array(
 						'type' => 'collape',
 						'name' => 'product',
 						'child' => array(
-							'ประเภทสินค้า' => array(
+							'Category' => array(
 		            			'link' => 'admin/categorys',
 		            			'active' => array('categorys')
 							),
-							'สินค้า' => array(
+							'Product' => array(
 								'link' => 'admin/products',
 								'active'=>array('products')
 							)
 						)
 					),
-					'อัลบั้มภาพ' => array(
+					'Gallery' => array(
 						'link' => 'admin/gallerys',
 						'active' => array('gallerys')
 					),
-					'แค็ตตาล็อก' => array(
+					'Catalog' => array(
 						'link' => 'admin/catalogs',
 						'active' => array('catalogs')
 					),
-					'ผู้ใช้งาน' => array(
+					'User' => array(
 						'link' => 'admin/users',
 						'active' => array('users')
 					),

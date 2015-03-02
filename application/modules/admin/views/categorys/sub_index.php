@@ -1,15 +1,15 @@
-<h3><? echo anchor('admin/categorys', 'ประเภทสินค้า '); ?>> <? echo $cat->title; ?></h3>
+<h3><? echo anchor('admin/categorys', 'Category '); ?>> <? echo $cat->title; ?></h3>
 <hr>
 
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th style="width:50px;">#</th>
-			<th style="width:80px;">สถานะ</th>
-			<th style="width:50px;">ลำดับ</th>
-			<th>รายละเอียด</th>
-			<th class='text-center' style="width:140px;">
-				<? echo anchor('admin/categorys/sub_form/'.$cat->id, '<span class="glyphicon glyphicon-plus"></span> เพิ่มรายการ', 'class="btn btn-sm btn-info"'); ?>
+			<th style="width:80px;">Status</th>
+			<th style="width:50px;">Index</th>
+			<th>Title</th>
+			<th class='text-center' style="width:165px;">
+				<? echo anchor('admin/categorys/sub_form/'.$cat->id, '<span class="glyphicon glyphicon-plus"></span> Add', 'class="btn btn-sm btn-info"'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -37,8 +37,8 @@
 					<td><? echo $item->title; ?></td>
 					<td class='text-center'>
 						<? 
-							echo anchor('admin/categorys/sub_form/'.$cat->id.'/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> แก้ไข', 'class="btn btn-sm btn-warning"').' ';
-							echo anchor('admin/categorys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> ลบ', 'class="btn btn-sm btn-danger"'); 
+							echo anchor('admin/categorys/sub_form/'.$cat->id.'/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Edit', 'class="btn btn-sm btn-warning"').' ';
+							echo anchor('admin/categorys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> Delete', 'class="btn btn-delete btn-sm btn-danger"'); 
 						?>
 					</td>
 				</tr>
