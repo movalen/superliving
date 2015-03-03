@@ -19,7 +19,7 @@
     </h1>
 </div>
 
-<form class="form-horizontal" role="form" action="admin/users/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
+<form class="form-horizontal" role="form" action="admin/profile_save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	
 	<div class="form-group" >

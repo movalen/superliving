@@ -12,6 +12,25 @@ class Admin extends Admin_Controller {
 		$this->template->build("index", @$data);
 	}
 	
+	public function profile_save($id = false) {
+		if(empty($_POST['pass'])) {
+			unset($_POST['pass']); 	
+		} else {
+			if($_POST['pass'] == $_POST['repass']) {
+				$_POST['pass'] = md5($_POST['pass']);
+			} else {
+				unset($_POST['pass']);
+			}
+		}
+		//save data
+			$data['rs']  = new User($id);
+			$data['rs']->from_array($_POST);
+			$data['rs']->save();
+		//End - save data
+
+		redirect('admin');
+	}
+	
 	
 	public function switch_status($model,$id) {
 		$model = ucfirst($model);

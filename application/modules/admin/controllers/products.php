@@ -59,44 +59,46 @@ class Products extends Admin_Controller {
 		
 		//Upload files
 			//Clear old image
-				if(!empty($data['rs']->path_thumb)) {
+				if(!empty($_POST['path_thumb'])) {
 					unlink($data['rs']->path_thumb);
 					$_POST['path_thumb'] = '';
 				}
-				if(!empty($data['rs']->path_image)) {
+				if(!empty($_POST['path_image'])) {
 					unlink($data['rs']->path_image);
 					$_POST['path_image'] = '';
 				}
 			//End - clear old image
 			
 
-			$config['upload_path'] = 'uploads/product';
-			$config['allowed_types'] = 'jpg|gif|png';
-			$config['create_thumb'] = true;
-			#$config['max_height'] =
-			#$config['max_width'] = 
-			
-			$this->load->library('upload', $config);
-			if($this->upload->do_upload('path_image')) {
-				$file = $this->upload->data();
-				$file_name = uniqid();
-				$_POST['path_image'] = 'uploads/product/'.$file_name.$file['file_ext'];
-				$_POST['path_thumb'] = 'uploads/product/'.$file_name.'_thumb'.$file['file_ext'];
-				rename($file['full_path'], $_POST['path_image']);
-				
-				//create - Thumbnail
-				$config['image_library'] = 'gd2';
-				$config['source_image'] =  $_POST['path_image'];
-				$config['width'] = 50;
-				$config['height'] = 50;
+			if(!empty($_FILES['path_image']['tmp_name'])) {
+				$config['upload_path'] = 'uploads/product';
+				$config['allowed_types'] = 'jpg|gif|png';
 				$config['create_thumb'] = true;
-				$this->load->library('image_lib', $config);
-				$this->image_lib->resize();
-
-				//end - create - thumbnail
-			} else {
-				echo $this->upload->display_error();
-			}
+				#$config['max_height'] =
+				#$config['max_width'] = 
+				
+				$this->load->library('upload', $config);
+				if($this->upload->do_upload('path_image')) {
+					$file = $this->upload->data();
+					$file_name = uniqid();
+					$_POST['path_image'] = 'uploads/product/'.$file_name.$file['file_ext'];
+					$_POST['path_thumb'] = 'uploads/product/'.$file_name.'_thumb'.$file['file_ext'];
+					rename($file['full_path'], $_POST['path_image']);
+					
+					//create - Thumbnail
+					$config['image_library'] = 'gd2';
+					$config['source_image'] =  $_POST['path_image'];
+					$config['width'] = 50;
+					$config['height'] = 50;
+					$config['create_thumb'] = true;
+					$this->load->library('image_lib', $config);
+					$this->image_lib->resize();
+	
+					//end - create - thumbnail
+				} else {
+					echo $this->upload->display_error();
+				}
+			}	
 		//End - upload files
 
 		//save data

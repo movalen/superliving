@@ -19,6 +19,50 @@
 	
 	<link rel="stylesheet" href="js/Nivo-Slider-master/nivo-slider.css" type="text/css" media="screen" />
 
+	<?
+		$path_info = @explode('/', $_SERVER['PATH_INFO']);
+		$path_info = @$path_info[1];
+		
+		$menu = array(
+			0 => array(
+				'title' => 'HOME',
+				'link' => '',
+				'active' => array(
+					'', 
+					'home',
+					'products'
+				)
+			),
+			1 => array(
+				'title' => 'ONE STOP SOLUTION',
+				'link' => 'one_stop_solution',
+				'active' => array(
+					'one_stop_solution'
+				)
+			),
+			2 => array(
+				'title' => 'PROJECT GALLERY',
+				'link' => 'gallerys',
+				'active' => array(
+					'gallerys'
+				)
+			),
+			3 => array(
+				'title' => 'CATALOGS',
+				'link' => 'catalogs',
+				'active' => array(
+					'catalogs'
+				)
+			),
+			4 => array(
+				'title' => 'ABOUT US',
+				'link' => 'about_us',
+				'active' => array(
+					'about_us'
+				)
+			)
+		);
+	?>
 </head><!--/head-->
 
 <body>
@@ -33,33 +77,53 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="height: 60px">
                 <ul class="nav navbar-nav navbar-right" style="height: 65px">
-                    <li style="height: 65px" <?php echo (@$active=='')?'class="active"':''; ?>>
+                	<? foreach($menu as $item) {
+                		?>
+                		<li style="height:65px;" <? echo (in_array($path_info, $item['active']))?"class='active'":null; ?>>
+                			<a href="<? echo $item['link']; ?>"  style="height: 65px"><? echo $item['title']; ?></a>
+                		</li>
+                		<?
+                	} ?>
+                	<!--
+                    <li style="height: 65px" <?php echo (@$path_info=='')?'class="active"':''; ?>>
                         <a href="index.php" style="height: 65px">HOME</a>
                     </li>
-                    <li <?php echo (@$active=='one_stop_solution')?'class="active"':''; ?>>
+                    <li <?php echo (@$path_info=='one_stop_solution')?'class="active"':''; ?>>
                         <a href="one_stop_solution" style="height: 65px">ONE STOP SOLUTION</a>
                     </li>
-                    <li <?php echo (@$active=='project_gallery')?'class="active"':''; ?>>
+                    <li <?php echo (@$path_info=='gallerys')?'class="active"':''; ?>>
                         <a href="project_gallery" style="height: 65px">PROJECT GALLERY</a>
                     </li>
-                    <li <?php echo (@$active=='catalogs')?'class="active"':''; ?>>
+                    <li <?php echo (@$path_info=='catalogs')?'class="active"':''; ?>>
                         <a href="catalogs" style="height: 65px">CATALOGS</a>
                     </li>
-                    <li <?php echo (@$active=='about_us')?'class="active"':''; ?>>
+                    <li <?php echo (@$path_info=='about_us')?'class="active"':''; ?>>
                         <a href="about_us" style="height: 65px">ABOUT US</a>
                     </li>
+                   -->
                 </ul>
             </div>
+            
             <!-- /.navbar-collapse -->
             <div style="font-size: 12px;border-top: 1px solid #ff5f01;width:100%;text-align: center">
 	        	<ul class="nav navbar-nav product_list" style="display:inline-block;text-align:center;float:none !important;">
-	        		<?
+        		    <? 
+						$menu_category = @explode('/', $_SERVER['PATH_INFO']);
+
 	        			$category = new Category();
-						$category->where('parent_id is null');
-						$category->get();
-						
+						$category	->where('status', 1)
+									->where('parent_id is null')
+									->get();
+
 	        			foreach($category as $item) {
-	        				echo '<li><a href="product/'.$item->id.'">'.$item->title.'</a></li>';
+	        				echo '<li ';
+								if(@$menu_category[1] == 'products' && @$menu_category[3] == $item->id) {
+									echo 'class="active"';
+								}
+	        				echo ' style="width:'.(100/count($category->all)).'%;">';
+								echo '<a style="display:inline-block; width:100%;" href="products/lists/'.$item->id.'">'.$item->title.'</a>';
+	        				echo '</li>';
+	        				#echo '<li><a href="product/'.$item->id.'">'.$item->title.'</a></li>';
 	        			}
 	        		?>
 	        		<!--
@@ -81,22 +145,22 @@
         </div>
         <!-- /.container -->
     </nav>
-    
-    <? echo $template['body']; ?>
+    <div style="min-height:575px;">
+    	<? echo $template['body']; ?>
+    </div>
 	
 	<div class="footer">
 		<div class="container">
 	   		<div class="row">
 	            <div class="col-md-12">
 	            	<h3>Contact us</h3>
-	                <p>Mainland International Group</p>
-	                <p>
-	                	
-	                	Office : C, 22/F, Development Tower, Huayuan East Road, Foshan City, Guangdong Province, China <br />
-						Showroom :  Huaxia Ceramic City, Nangzhuang Town, Foshan, G.D.Province, China <br />
-						Tel : +86-757-83207360, +86-757-83207390 <br />
-						Email : Mainland@Mainland.com.cn
-	                </p>
+	            	<?
+	            		$contact = new Contact();
+						$contact->where('type', 'contact_us')
+								->get(1);
+								
+						echo $contact->detail; 
+	            	?>
 	            </div>
 	        </div>
 	        COPYRIGHT © Super Living Co.,Ltd.

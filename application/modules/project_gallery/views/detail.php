@@ -1,6 +1,6 @@
 <div class="container container_body">
 	<div class="col-lg-12 header_list">
-        <h3 class="page-header">PROJECT GALLERY NAME</h3>
+        <h3 class="page-header"><? echo $head; ?>xxx</h3>
         <div class="col-md-12 breadcrumb">
         		<a href="index.php">HOME</a> >
         		<a href="project_gallery.php">PROJECT GALLERY</a> >

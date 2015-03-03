@@ -8,7 +8,7 @@ class categorys extends Admin_Controller {
 	
 	public function index() {
 		$data['row'] = new Category();
-		$data['row']->get_page();
+		$data['row']->where('parent_id is null')->get_page();
 		$data['no'] = 0;
 		
 		$this->template->build("categorys/index", @$data);
@@ -45,7 +45,6 @@ class categorys extends Admin_Controller {
 	//--Sub categorys
 	public function sub_index($id = false) {
 		$data['cat'] = new Category($id);
-		$data['cat']->get(1);
 		
 		$data['row'] = new Category();
 		$data['row']->where('parent_id', $id);
@@ -58,7 +57,6 @@ class categorys extends Admin_Controller {
 	
 	public function sub_form($parent_id = false, $id = false) {
 		$data['parent'] = new Category($parent_id);
-		$data['parent']->get(1);
 		
 		$data['rs'] = new Category($id);
 		
