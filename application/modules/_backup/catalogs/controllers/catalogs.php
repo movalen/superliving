@@ -7,9 +7,6 @@ class Catalogs extends Public_Controller {
 	}
 	
 	public function index() {
-		$data['rs'] = new Catalog();
-		$data['rs']->get_page();
-		
 		$this->template->build("catalogs/index",@$data);
 	}
 	
