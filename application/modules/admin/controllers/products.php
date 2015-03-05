@@ -72,7 +72,7 @@ class Products extends Admin_Controller {
 			//End - clear old image
 			
 
-			if(!empty($_FILES['path_image']['tmp_name'])) {
+#			if(!empty($_FILES['path_image']['tmp_name'])) {
 				$config['upload_path'] = 'uploads/product';
 				$config['allowed_types'] = 'jpg|gif|png';
 				$config['create_thumb'] = true;
@@ -98,9 +98,10 @@ class Products extends Admin_Controller {
 	
 					//end - create - thumbnail
 				} else {
-					echo $this->upload->display_error();
+					set_notify('error', 'Please attach files.');
+					redirect('admin/products/form/'.$id);
 				}
-			}	
+			#}
 		//End - upload files
 
 		//save data
@@ -108,7 +109,7 @@ class Products extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
+		set_notify('success', 'Save complete.');
 		redirect('admin/products');
 	}
 	
@@ -123,7 +124,7 @@ class Products extends Admin_Controller {
 			$_POST['path_image'] = '';
 		}
 		$data['rs']->delete();
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Delete complete.');
 		redirect('admin/products');
 	}	 	
 }

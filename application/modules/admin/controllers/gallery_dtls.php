@@ -31,7 +31,7 @@ class Gallery_dtls extends Admin_Controller {
 		@unlink($data->path_thumb);
 		#$data->path_thumb = null;
 		$data->delete();
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Delete image complete.');
 		redirect('admin/gallery_dtls/index/'.$gallery_id);
 	}
 	
@@ -76,7 +76,8 @@ class Gallery_dtls extends Admin_Controller {
 
 				//end - create - thumbnail
 			} else {
-				echo $this->upload->display_error();
+				set_notify('error', 'Please attach files.');
+				redirect('admin/gallery_dtls/index/'.$_POST['gallery_id']);
 			}
 		//End - upload files
 

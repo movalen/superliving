@@ -35,3 +35,16 @@
 	</div>
 </form>
 
+
+<script language="JavaScript">
+	$(function(){
+		$('form').validate({
+			rules: {
+				detail:{'required':true }
+			},
+			messages: {
+				detail : {'required':'Please identify'}
+			}
+		});
+	});
+</script>

@@ -25,7 +25,7 @@ class Admin extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-		set_notify('success', 'บันทึกข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Save complete.');
 		redirect('admin');
 	}
 	
@@ -40,7 +40,7 @@ class Admin extends Admin_Controller {
 	
 	public function signout() {
 		logout();
-		set_notify('success', 'ออกจากระบบเสร็จสิ้น');
+		set_notify('success', 'Sign out complete.');
 		redirect('admin');
 	}
 	
@@ -71,7 +71,7 @@ class Admin extends Admin_Controller {
 		$data = new Contact($id);
 		$data->from_array($_POST);
 		$data->save();
-		set_notify('success', 'บันทึกข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Save complete.');
 		redirect('admin/'.$_POST['type']);
 	}
 }

@@ -36,14 +36,14 @@ class Users extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-		set_notify('success', 'บันทึกข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Save complete.');
 		redirect('admin/users');
 	}
 	
 	public function delete($id = false) {
 		$data['rs'] = new User($id);
 		$data['rs']->delete();
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Delete complete.');
 		redirect('admin/Users');
 	}	 	
 }

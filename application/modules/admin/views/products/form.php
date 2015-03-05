@@ -28,6 +28,19 @@
 				});
 			}	
 		});
+		
+		$('form').validate({
+			rules: {
+				category_id:{'required':true },
+				model_number:{'required':true },
+				model_size:{'required':true }
+			},
+			messages: {
+				category_id:{'required':'Please select sub category.' },
+				model_number:{'required':'Please identify.' },
+				model_size:{'required':'Please identify.' }
+			}
+		});
 	});
 </script>
 

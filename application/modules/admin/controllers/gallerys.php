@@ -33,7 +33,7 @@ class Gallerys extends Admin_Controller {
 		unlink($data->path_cover);
 		$data->path_cover = null;
 		$data->save();
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Delete image complete.');
 		redirect('admin/gallerys/form/'.$id);
 	}
 	
@@ -57,7 +57,6 @@ class Gallerys extends Admin_Controller {
 	public function save($id = false) {
 		$data['rs']  = new Gallery($id);
 		
-		if(!empty($_FILES['path_cover']['tmp_name'])) {
 			//Upload files	
 				//Clear old image
 					if(!empty($data['rs']->path_cover)) {
@@ -85,17 +84,17 @@ class Gallerys extends Admin_Controller {
 						$this->image_lib->resize();
 					//end - create - thumbnail
 				} else {
-					echo $this->upload->display_error();
+					set_notify('error', 'Please attach files.');
+					redirect('admin/gallerys/form/'.$id);
 				}
 			//End - upload files
-		}
 		
 		
 		//save data
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
+		set_notify('success', 'Save complete.');
 		redirect('admin/gallerys');
 	}
 	
@@ -106,7 +105,7 @@ class Gallerys extends Admin_Controller {
 			$_POST['path_cover'] = '';
 		}
 		$data['rs']->delete();
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Delete complete.');
 		redirect('admin/gallerys');
 	}	 	
 }

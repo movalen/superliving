@@ -17,7 +17,7 @@ class categorys extends Admin_Controller {
 	
 	public function form($id=false) {
 		$data['rs'] = new Category($id);
-
+		$this->template->append_metadata('<script src="media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>');
 		$this->template->build('categorys/form', @$data);
 	}
 
@@ -27,7 +27,7 @@ class categorys extends Admin_Controller {
 		$data['rs']->save();
 		
 		
-		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
+		set_notify('success', 'Save complete.');
 		if(empty($data['rs']->parent_id)) {
 			redirect('admin/categorys');
 		} else {
@@ -42,7 +42,7 @@ class categorys extends Admin_Controller {
 			$data['rs']->delete();	
 		}
 		
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');	
+		set_notify('success', 'Delete complete.');	
 		redirect($link);
 	}
 	
@@ -65,6 +65,7 @@ class categorys extends Admin_Controller {
 		
 		$data['rs'] = new Category($id);
 		
+		$this->template->append_metadata('<script src="media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>');
 		$this->template->build('categorys/sub_form', @$data);
 	}	
 }

@@ -30,7 +30,7 @@ class Catalogs extends Admin_Controller {
 			$data->{$field} = null;
 			
 			$data->save();
-			
+			set_notify('succes', 'Delete file complete.');
 			redirect('admin/catalogs/form/'.$id);
 		}
 
@@ -54,9 +54,6 @@ class Catalogs extends Admin_Controller {
 					$file_name = uniqid();
 					$_POST['path_cover'] = $config['upload_path'].$file_name.$file['file_ext'];
 					rename($file['full_path'], $_POST['path_cover']);
-				} else {
-					#echo $this->upload->display_error();
-					redirect('admin/catalogs/form/'.$id);
 				}
 			}
 			
@@ -76,23 +73,20 @@ class Catalogs extends Admin_Controller {
 					$file_name = uniqid();
 					$_POST['path_file'] = $config['upload_path'].$file_name.$file['file_ext'];
 					rename($file['full_path'], $_POST['path_file']);
-				} else {
-					#echo $this->upload->display_error();
-					redirect('admin/catalogs/form/'.$id);
 				}
 			}
 		//End - upload files
 		
 		$data->from_array($_POST);
 		$data->save();
-		set_notify('success', 'บันทึกข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Save complete.');
 		redirect('admin/catalogs');
 	}
 	
 	public function delete($id) {
 		$data = new Catalog($id);
 		$data->delete();
-		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
+		set_notify('success', 'Delete complete.');
 		redirect('admin/catalogs');
 	}
 }
