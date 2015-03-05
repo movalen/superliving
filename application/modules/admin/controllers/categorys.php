@@ -27,6 +27,7 @@ class categorys extends Admin_Controller {
 		$data['rs']->save();
 		
 		
+		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
 		if(empty($data['rs']->parent_id)) {
 			redirect('admin/categorys');
 		} else {
@@ -39,7 +40,9 @@ class categorys extends Admin_Controller {
 		$link = (empty($data['rs']->parent_id)) ? 'admin/categorys' : 'admin/categorys/sub_index/'.$data['rs']->parent_id ;
 		if($id) {
 			$data['rs']->delete();	
-		}	
+		}
+		
+		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');	
 		redirect($link);
 	}
 	

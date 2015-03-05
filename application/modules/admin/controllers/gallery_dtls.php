@@ -31,7 +31,7 @@ class Gallery_dtls extends Admin_Controller {
 		@unlink($data->path_thumb);
 		#$data->path_thumb = null;
 		$data->delete();
-		
+		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
 		redirect('admin/gallery_dtls/index/'.$gallery_id);
 	}
 	
@@ -85,6 +85,7 @@ class Gallery_dtls extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
+		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
 		redirect('admin/gallery_dtls/index/'.$_POST['gallery_id']);
 	}	 	
 }

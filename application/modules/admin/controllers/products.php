@@ -108,7 +108,7 @@ class Products extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-
+		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
 		redirect('admin/products');
 	}
 	
@@ -123,6 +123,7 @@ class Products extends Admin_Controller {
 			$_POST['path_image'] = '';
 		}
 		$data['rs']->delete();
+		set_notify('success', 'ลบข้อมูลเสร็จขสิ้น');
 		redirect('admin/products');
 	}	 	
 }

@@ -79,6 +79,7 @@ class Admin_each_Controller extends Base_Controller {
         parent::__construct();
         $this->template->title("Admin");
 		$this->template->set_layout("admin/startbootstrap-sb-admin-1.0.0/index");
+		js_notify();
 	}
 }
 class Admin_Controller extends Admin_each_Controller {

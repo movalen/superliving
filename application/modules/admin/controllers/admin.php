@@ -3,10 +3,8 @@ class Admin extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
-	#	$this->load->library("ga");
 	}
-	
-	
+
 	public function index() {
 		$data['rs'] = new User($this->session->userdata('id'));
 		$this->template->build("index", @$data);
@@ -27,7 +25,7 @@ class Admin extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-
+		set_notify('success', 'บันทึกข้อมูลเสร็จขสิ้น');
 		redirect('admin');
 	}
 	
@@ -42,6 +40,7 @@ class Admin extends Admin_Controller {
 	
 	public function signout() {
 		logout();
+		set_notify('success', 'ออกจากระบบเสร็จสิ้น');
 		redirect('admin');
 	}
 	
@@ -72,7 +71,7 @@ class Admin extends Admin_Controller {
 		$data = new Contact($id);
 		$data->from_array($_POST);
 		$data->save();
-		
+		set_notify('success', 'บันทึกข้อมูลเสร็จขสิ้น');
 		redirect('admin/'.$_POST['type']);
 	}
 }
