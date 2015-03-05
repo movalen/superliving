@@ -13,6 +13,7 @@ class Gallery_dtls extends Admin_Controller {
 		$data['rs'] = new Gallery($id);
 		$data['no'] = 0;
 
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build("gallery_dtls/index", @$data);
 	}
 	

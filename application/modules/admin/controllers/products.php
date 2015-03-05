@@ -45,12 +45,14 @@ class Products extends Admin_Controller {
 		$data['row']->get_page();
 		$data['no'] = 0;
 
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build("products/index", @$data);
 	}
 	
 	public function form($id=false) {
 		$data['rs'] = new Product($id);
-
+		
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build('products/form', @$data);
 	}
 

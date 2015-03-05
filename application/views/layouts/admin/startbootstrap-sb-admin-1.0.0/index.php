@@ -52,6 +52,8 @@
 		  padding:0px;
 		}
 	</style>
+	
+	<? echo $template['metadata']; ?>
 </head>
 
 <body>
@@ -178,7 +180,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <?
             	$path_info = @explode('/', $_SERVER['PATH_INFO']);
-				$path_info = @$path_info[2];
+				$path_info = @strtolower($path_info[2]);
 				$menu = array(
 					'Home' => array(
 						'link' => 'admin',

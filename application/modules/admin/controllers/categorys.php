@@ -11,6 +11,7 @@ class categorys extends Admin_Controller {
 		$data['row']->where('parent_id is null')->get_page();
 		$data['no'] = 0;
 		
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build("categorys/index", @$data);
 	}
 	
@@ -52,6 +53,7 @@ class categorys extends Admin_Controller {
 		
 		$data['no'] = 0;
 		
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build('categorys/sub_index', @$data);
 	}
 	

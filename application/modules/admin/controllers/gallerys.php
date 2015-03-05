@@ -43,12 +43,14 @@ class Gallerys extends Admin_Controller {
 		$data['row']->get_page();
 		$data['no'] = 0;
 
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build("gallerys/index", @$data);
 	}
 	
 	public function form($id=false) {
 		$data['rs'] = new Gallery($id);
 
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build('gallerys/form', @$data);
 	}
 

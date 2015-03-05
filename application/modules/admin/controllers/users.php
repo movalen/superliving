@@ -10,7 +10,8 @@ class Users extends Admin_Controller {
 		$data['row'] = new User();
 		$data['row']->get_page();
 		$data['no'] = 0;
-
+	
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build("users/index", @$data);
 	}
 	

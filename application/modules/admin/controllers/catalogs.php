@@ -9,13 +9,15 @@ class Catalogs extends Admin_Controller {
 		$data['row'] = new Catalog();
 		$data['row']->get_page();
 		$data['no'] = 0;
-
+		
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build("catalogs/index", @$data);
 	}
 	
 	public function form($id=false) {
 		$data['rs'] = new Catalog($id);
 
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->build('catalogs/form', @$data);
 	}
 		public function delete_file($field = false, $id = false) {
