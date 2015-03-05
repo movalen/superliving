@@ -51,3 +51,16 @@
 	</div>
 </form>
 
+<script language="JavaScript">
+	$(function(){
+		$('form').validate({
+			rules: {
+				name:{'required':true },
+				user:{'required':true }
+			},
+			messages: {
+				name:{'required':'Please identify' },
+				user:{'required':'Please identify' }			}
+		});
+	});
+</script>

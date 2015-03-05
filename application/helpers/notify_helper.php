@@ -11,22 +11,20 @@ if(!function_exists('set_notify')) {
 	}
 }
 
-if(!function_exists('notify'))
-{
-	function js_notify()
-	{
+if(!function_exists('notify')) {
+	function js_notify() {
 		$CI =& get_instance();
-		echo ($CI->session->flashdata('notify'));
-		
-		$js = "";
 		if($CI->session->flashdata('notify')) {
-			$js .= '<script src="'.site_url().'media/template/admin/js/jquery.js"></script>';
-		    $js .= '<script type="text/javascript" src="'.site_url().'media/addon/jsnotify/notify.min.js"></script>';
+		    $js = '<script type="text/javascript" src="'.site_url().'media/addon/jsnotify/notify.min.js"></script>';
 		    $js .= '<script type="text/javascript">
-				$.notify("'.$CI->session->flashdata('msg').'", "'.$CI->session->flashdata('type').'");
+		    	$(function(){
+		    		$.notify("'.$CI->session->flashdata('msg').'", "'.$CI->session->flashdata('type').'");
+		    	});
 			</script>';
-			echo $js; 
+			return $js; 
 		}
 	}
 }
+//ใส่ที่ controller (ด้วย append_metadata) เวลาใช้ให้ใช้ set_notify($type, $msg) ก่อนทำการ redirect 
+//:: ต้องใส่หลังจาก include jquery ด้วย
 ?>
