@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Superliving - Administrator</title>
 
 
 
@@ -70,7 +70,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="media/template/admin/index.html">Back office</a>
+                <span class="navbar-brand">
+                Back office : <? echo anchor('', 'Views'); ?>
+                </span>
+                
                 
             </div>
             <? echo anchor('admin/signout', 'Sign out', 'class="btn btn-danger" style="float:right; margin:10px;"'); ?>
