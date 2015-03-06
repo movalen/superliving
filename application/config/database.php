@@ -58,7 +58,7 @@ $db['default']['database'] = 'c1royalrain';
 //Localhost
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
-$db['local']['password'] = '';
+$db['local']['password'] = '1234';
 $db['local']['database'] = 'superliving';
 /**/
 
