@@ -8,7 +8,8 @@
 		        "searchreplace visualblocks code fullscreen",
 		        "insertdatetime media table contextmenu paste"
 		    ],
-		    width:"600px",
+		    width:"700px",
+		    //resize: false,
 		    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 		});
 	});

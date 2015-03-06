@@ -74,14 +74,14 @@
 	                <div class="thumbnail">
 	                	<a href="images/201501141514438780.jpg" data-fancybox-group="button" class="fancybox-buttons" 
 	                		title="<span>
-				                    	<b>Model Number:GW60H3512</b>
-				                    	<p>Size:GW60H3512</p>
+				                    	<b style='word-wrap: break-word;'>Model Number:GW60H3512asdasdasdasdasdasd</b>
+				                    	<p style='word-wrap: break-word;'>Size:GW60H3512</p>
 				                    </span>"
 	                	>
 		                    <img class="img-responsive" src="images/201501141514438780.jpg" alt="">
 		                </a>
 	                    <div class="caption detail_product">
-	                        <p>Model Number:CM126101M(LAPPATO)</p>
+	                        <p>Model Number:CM126101M(LAPPATO)asdasdasdasdasdasd</p>
 	                        <p>Size:CM126101M(LAPPATO)</p>
 	                    </div>
 	                </div>

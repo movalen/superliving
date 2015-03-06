@@ -5,15 +5,15 @@
             <div class="thumbnail">
             	<a href="<? echo $obj->path_image; ?>" data-fancybox-group="button" class="fancybox-buttons" 
             		title="<span>
-		                    	<b>Model Number: <? echo $obj->model_number; ?></b>
-		                    	<p>Size : <? echo $obj->model_size; ?></p>
+		                    	<b style='word-wrap: break-word;'>Model Number: <? echo $obj->model_number; ?></b>
+		                    	<p style='word-wrap: break-word;'>Size : <? echo $obj->model_size; ?></p>
 		                    </span>"
             	>
-                    <img class="img-responsive" src="<? echo $obj->path_image; ?>" alt="">
+                    <img class="img-responsive" style="width: 180px; height: 180px" src="<? echo $obj->path_image; ?>" alt="">
                 </a>
                 <div class="caption detail_product">
-                    <p>Model Number : <? echo $obj->model_number; ?></p>
-                    <p>Size : <? echo $obj->model_size; ?></p>
+                    <p title="<? echo $obj->model_number; ?>">Model Number : <? echo $obj->model_number; ?></p>
+                    <p title="<? echo $obj->model_size; ?>">Size : <? echo $obj->model_size; ?></p>
                 </div>
             </div>
         </div>

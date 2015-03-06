@@ -71,6 +71,7 @@ class Gallery_dtls extends Admin_Controller {
 				$config['width'] = 245;
 				$config['height'] = 100;
 				$config['create_thumb'] = true;
+				$config['maintain_ratio'] = false;
 				$this->load->library('image_lib', $config);
 				$this->image_lib->resize();
 

@@ -23,9 +23,12 @@
 <!-- End - Modal#fullImage -->
 
 
-
-<h3><? echo anchor('admin/gallerys', 'Gallery'); ?> > (<? echo $rs->title; ?>)</h3>
-<hr>
+<div class="row">
+    <div class="col-lg-12">
+		<h3 style="word-wrap: break-word;"><? echo anchor('admin/gallerys', 'Gallery'); ?> > (<? echo $rs->title; ?>)</h3>
+		<hr>
+	</div>
+</div>
 <form method='post' action='admin/gallery_dtls/save'  enctype="multipart/form-data" style='border:solid 1px #bbb; background:#eee; display:inline-block; padding:8px;'>
 	<? 
 		echo form_hidden('gallery_id', @$rs->id);

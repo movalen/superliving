@@ -122,3 +122,15 @@ if(!function_exists("detail_page")) {
 		return @$foo[$page].$pagination->show(); 
 	}
 }
+
+if(!function_exists("chk_image_path")) {
+	function chk_image_path($image_path=null) {		
+		if ($image_path) {
+			$url_path = explode(base_url(), $image_path);
+			$image = (empty($url_path['0']))?$url_path['1']:$url_path['0'];
+			return file_exists($image);
+		} else {
+			return false;
+		}
+	}
+}

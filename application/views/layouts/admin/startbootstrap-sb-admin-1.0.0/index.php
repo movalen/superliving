@@ -58,7 +58,7 @@
 
 <body>
 
-    <div id="wrapper" style='height:100%;'>
+    <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -312,9 +312,14 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper" style='padding-top:60px; min-height:100%; background:#fff;'>
+        <div id="page-wrapper" style='padding-top:60px; min-height:640px; background:#fff;'>
         	<div class="container-fluid" style=''>
-        		<? echo $template['body']; ?></div>
+        		<div class="row">
+                    <div class="col-lg-12">
+        				<? echo $template['body']; ?>
+        			</div>
+        		</div>
+        	</div>
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
