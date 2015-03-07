@@ -19,7 +19,7 @@ class Products extends Admin_Controller {
 				echo 0 	;
 				return false;
 			} else {
-				echo '<option value="">--หมวดหมู่ย่อย--</option>';
+				echo '<option value="">--Sub category--</option>';
 				foreach($data['parent'] as $item) {
 					echo '<option value="'.$item->id.'">'.$item->title.'</option>';
 				}
@@ -53,6 +53,7 @@ class Products extends Admin_Controller {
 		$data['rs'] = new Product($id);
 		
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
 		$this->template->build('products/form', @$data);
 	}
 
@@ -72,7 +73,7 @@ class Products extends Admin_Controller {
 			//End - clear old image
 			
 
-#			if(!empty($_FILES['path_image']['tmp_name'])) {
+			if(!empty($_FILES['path_image']['tmp_name'])) {
 				$config['upload_path'] = 'uploads/product';
 				$config['allowed_types'] = 'jpg|gif|png';
 				$config['create_thumb'] = true;
@@ -101,7 +102,7 @@ class Products extends Admin_Controller {
 					set_notify('error', 'Please attach files.');
 					redirect('admin/products/form/'.$id);
 				}
-			#}
+			}
 		//End - upload files
 
 		//save data

@@ -7,6 +7,9 @@ class Products extends Public_Controller {
 	}
 	
 	public function lists($id = false, $child_id = false) {
+		if(!$id) {
+			redirect('');
+		}
 		//--Category
 			$data['cat_1'] = new Category($id);
 			$child_id = (empty($child_id))?$data['cat_1']->child->id:$child_id;

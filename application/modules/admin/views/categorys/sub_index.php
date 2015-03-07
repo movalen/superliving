@@ -6,7 +6,6 @@
 		<tr>
 			<th style="width:50px;">#</th>
 			<th style="width:80px;">Status</th>
-			<th style="width:50px;">Index</th>
 			<th>Title</th>
 			<th class='text-center' style="width:165px;">
 				<? echo anchor('admin/categorys/sub_form/'.$cat->id, '<span class="glyphicon glyphicon-plus"></span> Add', 'class="btn btn-sm btn-info"'); ?>
@@ -33,7 +32,6 @@
 							class="btn <? echo $btn_status['class']; ?>" 
 							data-loading-text="บันทึก..." ><? echo $btn_status['label']; ?></button>
 					</td>
-					<td><? echo (empty($item->ordinal_index))?'-':$item->ordinal_index; ?></td>
 					<td><? echo $item->title; ?></td>
 					<td class='text-center'>
 						<? 

@@ -28,6 +28,15 @@
 				});
 			}	
 		});
+		
+		$('form').validate({
+			rules: {
+				title:{required:true }
+			},
+			messages: {
+				title:{required:'Please identify.' }
+			}
+		});
 	});
 </script>
 

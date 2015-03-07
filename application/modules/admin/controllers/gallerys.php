@@ -51,6 +51,7 @@ class Gallerys extends Admin_Controller {
 		$data['rs'] = new Gallery($id);
 
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
 		$this->template->build('gallerys/form', @$data);
 	}
 
@@ -58,6 +59,7 @@ class Gallerys extends Admin_Controller {
 		$data['rs']  = new Gallery($id);
 		
 			//Upload files	
+			if(!empty($_FILES['path_cover']['tmp_name'])) {
 				//Clear old image
 					if(!empty($data['rs']->path_cover)) {
 						@unlink($data['rs']->path_cover);
@@ -80,6 +82,7 @@ class Gallerys extends Admin_Controller {
 						$config['source_image'] =  $_POST['path_cover'];
 						$config['width'] = 280;
 						$config['height'] = 150;
+						$config['maintain_ratio'] = false;
 						$this->load->library('image_lib', $config);
 						$this->image_lib->resize();
 					//end - create - thumbnail
@@ -87,7 +90,8 @@ class Gallerys extends Admin_Controller {
 					set_notify('error', 'Please attach files.');
 					redirect('admin/gallerys/form/'.$id);
 				}
-			//End - upload files
+		}
+		//End - upload files
 		
 		
 		//save data

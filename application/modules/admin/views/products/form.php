@@ -17,11 +17,11 @@
 		$('#category').on('change', function(){
 			$('[name=category_id]').html('<option value="">Loading...</option>').attr('disabled', true);
 			if(!$(this).val()) {
-				$('[name=category_id]').html('<option value="">--กรุณาเลือกหมวดหมู่สินค้า--</option>');
+				$('[name=category_id]').html('<option value="">--Please select category.--</option>');
 			} else {
 				$.get('admin/products/coption_category/'+$(this).val(), function(data){
 					if(data == 0) {
-						$('[name=category_id]').html('<option value="">--ไม่พบข้อมูล--</option>');
+						$('[name=category_id]').html('<option value="">--No data.--</option>');
 					} else {
 						$('[name=category_id]').html(data).attr('disabled', false);
 					}
@@ -31,14 +31,14 @@
 		
 		$('form').validate({
 			rules: {
-				category_id:{'required':true },
-				model_number:{'required':true },
-				model_size:{'required':true }
+				category_id:{required:true },
+				model_number:{required:true },
+				model_size:{required:true }
 			},
 			messages: {
-				category_id:{'required':'Please select sub category.' },
-				model_number:{'required':'Please identify.' },
-				model_size:{'required':'Please identify.' }
+				category_id:{required:'Please select sub category.' },
+				model_number:{required:'Please identify.' },
+				model_size:{required:'Please identify.' }
 			}
 		});
 	});
@@ -83,7 +83,7 @@
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_thumb)) {
 				echo anchor('admin/products/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
-				echo "<img src='".$rs->path_image."' class='thumbnail'><hr>";
+				echo "<img src='".$rs->path_image."' class='thumbnail' style='min-width:200px; min-height:200px;'><hr>";
 			} ?>
 			<input type='file' name='path_image'>
 		</div>

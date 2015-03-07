@@ -18,6 +18,7 @@ class Users extends Admin_Controller {
 	public function form($id=false) {
 		$data['rs'] = new User($id);
 
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
 		$this->template->build('Users/form', @$data);
 	}
 

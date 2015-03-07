@@ -4,11 +4,15 @@ class Admin extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
 	}
-
+	
 	public function index() {
+		$this->template->build('index');
+	}
+
+	public function profiles() {
 		$data['rs'] = new User($this->session->userdata('id'));
 		$this->template->append_metadata('<script src="media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>');
-		$this->template->build("index", @$data);
+		$this->template->build("profiles", @$data);
 	}
 	
 	public function profile_save($id = false) {

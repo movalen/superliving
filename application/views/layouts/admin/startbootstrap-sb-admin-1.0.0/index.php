@@ -58,7 +58,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper"  style="min-height:100%;">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -188,6 +188,10 @@
 					'Home' => array(
 						'link' => 'admin',
 						'active' => array('', 'index')
+					),
+					'Profile' => array(
+						'link' => 'admin/profiles',
+						'active' => array('profiles')
 					),
 					'Product data' => array(
 						'type' => 'collape',
