@@ -312,7 +312,7 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper" style='padding-top:60px; min-height:640px; background:#fff;'>
+        <div id="page-wrapper" style='padding-top:60px; min-height:45.9em; background:#fff;'>
         	<div class="container-fluid" style=''>
         		<div class="row">
                     <div class="col-lg-12">

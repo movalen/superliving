@@ -6,6 +6,13 @@
 		cursor:pointer;
 		border:solid 1px #000;
 	}
+	.table_td {
+		display: inline-block;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width:400px;	
+	}
 </style>
 <!-- Modal#fullImage -->
 	<div class="modal fade text-center" id="fullImage">
@@ -73,7 +80,7 @@
 							}
 						?>
 					</td>
-					<td><? echo $item->title; ?></td>
+					<td><span class="table_td" title="<? echo $item->title; ?>"><? echo $item->title; ?></span></td>
 					<td>
 						<?
 							if(!empty($item->path_file)) {

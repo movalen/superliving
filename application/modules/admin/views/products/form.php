@@ -55,28 +55,28 @@
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Category : </label>
-		<div class="col-lg-4"><?php echo form_dropdown(false, get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '--ประเภทสินค้า--'); ?></div>
+		<div class="col-lg-4"><?php echo form_dropdown(false, get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '-- Select category --'); ?></div>
 	</div>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Sub category : </label>
 		<div class="col-lg-4">
 			<?php
 				if(empty($rs->category->parent->id)) {
-					echo form_dropdown('category_id', array(), false, 'class="form-control" disabled="true"', '--กรุณาเลือกหมวดหมู่สินค้า--');
+					echo form_dropdown('category_id', array(), false, 'class="form-control" disabled="true"', '-- Please select category --');
 				} else {
 					$cat_option = @(get_option('id', 'title', "category where parent_id = '".@$rs->category->parent->id."'"))?get_option('id', 'title', "category where parent_id = '".$rs->category->parent->id."'"):array();
-					echo form_dropdown('category_id', $cat_option, @$rs->category_id, 'class="form-control"', '--หมวดหมู่ย่อย--');
+					echo form_dropdown('category_id', $cat_option, @$rs->category_id, 'class="form-control"', '-- Select Sub category --');
 				}	
 			?>
 		</div>
 	</div>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Model number : </label>
-		<div class="col-lg-4"><?php echo form_input('model_number', @$rs->model_number, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_input('model_number', @$rs->model_number, 'class="form-control" maxlength="50"'); ?></div>
 	</div>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Size : </label>
-		<div class="col-lg-4"><?php echo form_input('model_size', @$rs->model_size, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_input('model_size', @$rs->model_size, 'class="form-control" maxlength="50"'); ?></div>
 	</div>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Image : </label>

@@ -23,7 +23,7 @@
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Title : </label>
-		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control" autofocus maxlength="512"'); ?></div>
 	</div>
 	
 	<div class="form-group">
