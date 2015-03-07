@@ -64,9 +64,13 @@
 		$('form').validate({
 			rules: {
 				title:{'required':true }
+				<? if(empty($rs->path_file)) { ?> , path_file:{required:true} <? } ?>
+				<? if(empty($rs->path_cover)) { ?> , path_cover:{required:true} <? } ?>
 			},
 			messages: {
 				title : {'required':'Please identify'}
+				<? if(empty($rs->path_file)) { ?> , path_file:{required:'Please attach file catalog.'} <? } ?>
+				<? if(empty($rs->path_cover)) { ?> , path_file:{required:'Please attach image cover.'} <? } ?>
 			}
 		});
 	});

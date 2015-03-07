@@ -13,12 +13,18 @@ class Products extends Public_Controller {
 		//--Category
 			$data['cat_1'] = new Category($id);
 			
+			//redirect if category is disabled.
 			if($data['cat_1']->status != 1) {
 				redirect('');
 			}
 			
 			$child_id = (empty($child_id))?$data['cat_1']->child->id:$child_id;
 			$data['child'] = new Category($child_id);
+			
+			//redirect if sub category is disabled.
+			if($data['child']->status != 1) {
+				redirect('products/lists/'.$id);
+			}
 		//-- End - Category
 			
 		//--Nav

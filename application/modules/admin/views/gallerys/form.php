@@ -32,9 +32,11 @@
 		$('form').validate({
 			rules: {
 				title:{required:true }
+				<? if(empty($rs->path_cover)) { ?> , path_cover:{ required:true } <? } ?>
 			},
 			messages: {
 				title:{required:'Please identify.' }
+				<? if(empty($rs->path_cover)) { ?> , path_cover:{ required:'Please attach image cover.' } <? } ?>
 			}
 		});
 	});

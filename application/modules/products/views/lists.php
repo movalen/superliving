@@ -35,11 +35,12 @@
             			echo '<li><a href="#no_data" style="color:#aaa;" onclick="return false;">No data</a></li>';
             		} else {
             			foreach($cat_1->child as $item) {
-	            			echo '<li ';
-								echo ($item->id == @$child->id) ? 'class="active"' : null ;
-	            			echo '><a href="products/lists/'.$cat_1->id.'/'.$item->id.'">'.$item->title.'</a></li>';
+            				if($item->status == 1) {
+            					echo '<li ';
+									echo ($item->id == @$child->id) ? 'class="active"' : null ;
+		            			echo '><a href="products/lists/'.$cat_1->id.'/'.$item->id.'">'.$item->title.'</a></li>';
+            				}	
 	            		}
-						
             		}	
             	?>
 			</ul>
