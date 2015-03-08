@@ -58,9 +58,9 @@
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Cover image<span style="color: red">*</span> : </label>
 		<div class="col-lg-4">
-			<? if(!empty($rs->path_cover)) {
+			<? if(!empty($rs->path_thumb)) {
 				echo anchor('admin/gallerys/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
-				echo "<img src='".$rs->path_cover."' class='thumbnail'><hr>";
+				echo "<img src='".$rs->path_thumb."' class='thumbnail'><hr>";
 			} ?>
 			<input type='file' name='path_cover'>
 		</div>

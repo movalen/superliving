@@ -52,47 +52,40 @@ class Gallery_dtls extends Admin_Controller {
 			//End - clear old image
 			
 
-			$config['upload_path'] = 'uploads/gallery/';
-			$config['allowed_types'] = 'jpg|gif|png';
-			#$config['max_height'] =
-			#$config['max_width'] = 
-			
+			//Upload file
+				$config['upload_path'] = 'uploads/gallery';
+				$config['allowed_types'] = 'jpg|gif|png';
+				
 			$this->load->library('upload', $config);
+			
 			if($this->upload->do_upload('path_image')) {
+				//--Rename file thumb
 				$file = $this->upload->data();
 				$file_name = uniqid();
-				$_POST['path_image'] = $config['upload_path'].$file_name.$file['file_ext'];
-				$_POST['path_thumb'] = $config['upload_path'].$file_name.'_thumb'.$file['file_ext'];
-				rename($file['full_path'], $_POST['path_image']);
+				$_POST['path_image'] = $config['upload_path'].'/'.$file_name.$file['file_ext'];
+				$_POST['path_thumb'] = $config['upload_path'].'/'.$file_name.'_thumb'.$file['file_ext'];
+				rename($file['full_path'], $_POST['path_thumb']);
 				
-				//create - Thumbnail
+				//resize - files 
+					$config['image_library'] = 'gd2';
+					$config['source_image'] =  $_POST['path_thumb'];
+					$config['width'] = '980';
+					$config['height'] = '400';
+					$config['maintain_ratio'] = false;
+					$this->load->library('image_lib', $config);
+					$this->image_lib->resize();
 				
-				$config['image_library'] = 'gd2';
-				$config['source_image'] =  $_POST['path_image'];
-				$config['new_image'] = $config['upload_path'].$file_name.'_thumb'.$file['file_ext'];
-				$config['width'] = 245;
-				$config['height'] = 100;
-				$config['maintain_ratio'] = false;
-				$this->load->library('image_lib', $config);
-				if(!$this->image_lib->resize())
-		        { 
-		            echo $this->image_lib->display_errors();
-		        }   
-				$this->image_lib->clear();
-				//end - create - thumbnail
+				//create thumb
+					copy($_POST['path_thumb'], $_POST['path_image']);
 				
-				//resize - image
-				unset($config);
-				$config['image_library'] = 'gd2';
-				$config['source_image'] =  $_POST['path_image'];
-				$config['width'] = 850;
-				$config['height'] = 350;
-				$config['maintain_ratio'] = false;
-				$this->image_lib->initialize($config);
-				if(!$this->image_lib->resize())
-		        { 
-		            echo $this->image_lib->display_errors();
-		        } 
+				//resize thumb
+					$config['source_image'] =  $_POST['path_thumb'];
+					$config['width'] = '207';
+					$config['height'] = '150';
+					$this->image_lib->initialize($config);
+					$this->image_lib->resize();
+					$this->image_lib->clear();
+						
 			} else {
 				set_notify('error', 'Please attach files.');
 				redirect('admin/gallery_dtls/index/'.$_POST['gallery_id']);

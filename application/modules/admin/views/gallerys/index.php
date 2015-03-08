@@ -50,7 +50,7 @@
 										data-loading-text="Loading..." ><? echo $btn_status['label']; ?></button>
 								</td>
 								<td class='text-center'>
-									<? echo (empty($item->path_cover))?'n/a':'<img class="thumb" src="'.$item->path_cover.'" style="width:140px; height:75px;">'; ?>
+									<? echo (empty($item->path_thumb))?'n/a':'<img class="thumb" src="'.$item->path_thumb.'" style="width:140px; height:75px;">'; ?>
 								</td>
 								<td><? echo anchor('admin/gallery_dtls/index/'.$item->id, $item->title, 'class="table_td" title="'.$item->title.'"'); ?></td>
 								<td class='text-center'><? echo '('.count($item->gallery_dtl->all).')'; ?></td>

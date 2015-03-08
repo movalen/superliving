@@ -30,8 +30,13 @@ class Gallerys extends Admin_Controller {
 	public function delete_image($id = false) {
 		if(!$id) { redirect('admin/gallerys'); }
 		$data = new Gallery($id);
+		
 		unlink($data->path_cover);
 		$data->path_cover = null;
+		
+		unlink($data->path_thumb);
+		$data->path_thumb = null;		
+		
 		$data->save();
 		set_notify('success', 'Delete image complete.');
 		redirect('admin/gallerys/form/'.$id);
@@ -65,38 +70,52 @@ class Gallerys extends Admin_Controller {
 						@unlink($data['rs']->path_cover);
 						$_POST['path_cover'] = '';
 					}
-				//End - clear old image
-				
+
+				//Upload files
 				$config['upload_path'] = 'uploads/gallery';
 				$config['allowed_types'] = 'jpg|gif|png';
-	
+				
 				$this->load->library('upload', $config);
+				
 				if($this->upload->do_upload('path_cover')) {
+					//--Rename file thumb
 					$file = $this->upload->data();
 					$file_name = uniqid();
 					$_POST['path_cover'] = $config['upload_path'].'/'.$file_name.$file['file_ext'];
-					rename($file['full_path'], $_POST['path_cover']);
+					$_POST['path_thumb'] = $config['upload_path'].'/'.$file_name.'_thumb'.$file['file_ext'];
+					rename($file['full_path'], $_POST['path_thumb']);
 					
-					//create - Thumbnail
+					//resize - files 
 						$config['image_library'] = 'gd2';
-						$config['source_image'] =  $_POST['path_cover'];
-						$config['width'] = 280;
-						$config['height'] = 150;
+						$config['source_image'] =  $_POST['path_thumb'];
+						$config['width'] = '980';
+						$config['height'] = '400';
 						$config['maintain_ratio'] = false;
 						$this->load->library('image_lib', $config);
 						$this->image_lib->resize();
-					//end - create - thumbnail
+					
+					//create thumb
+						copy($_POST['path_thumb'], $_POST['path_cover']);
+					
+					//resize thumb
+						$config['source_image'] =  $_POST['path_thumb'];
+						$config['width'] = '207';
+						$config['height'] = '150';
+						$this->image_lib->initialize($config);
+						$this->image_lib->resize();
+						$this->image_lib->clear();
+									
 				} else {
 					set_notify('error', 'Please attach files.');
 					redirect('admin/gallerys/form/'.$id);
 				}
-		}
-		//End - upload files
+		} //End - upload files
 		
 		
 		//save data
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
+			
 		//End - save data
 		set_notify('success', 'Save complete.');
 		redirect('admin/gallerys');

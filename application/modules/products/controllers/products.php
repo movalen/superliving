@@ -22,7 +22,7 @@ class Products extends Public_Controller {
 			$data['child'] = new Category($child_id);
 			
 			//redirect if sub category is disabled.
-			if($data['child']->status != 1) {
+			if(!empty($data['child']->id) && $data['child']->status != 1) {
 				redirect('products/lists/'.$id);
 			}
 		//-- End - Category
@@ -37,15 +37,18 @@ class Products extends Public_Controller {
 		//--End - Nav
 		
 		//-- Product
-			$data['rs'] = new Product();
-			$data['rs']	-> where('status', 1)
-						-> where('category_id', $data['child']->id);
+				$data['rs'] = new Product();
+				$data['rs']	-> where('status', 1)
+							-> where('category_id is not null')
+							-> where('category_id', $data['child']->id);
 			
 			if(!empty($_GET['s_box'])) {
-				$data['rs']	-> like('model_number', $_GET['s_box'])
-							-> or_like('model_size', $_GET['s_box']);
+				$data['rs']	-> group_start()
+								-> like('model_number', $_GET['s_box'])
+								-> or_like('model_size', $_GET['s_box'])
+							-> group_end();
 			}
-			
+
 			$data['rs']->get_page(6);
 		//-- End - product
 		

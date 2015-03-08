@@ -20,6 +20,10 @@
 		                <img src="images/201412260857166770.jpg" data-thumb="images/201412260857166770.jpg" alt="" />
 		               -->
 		                <?
+		                	if(!empty($album->path_cover)) {
+		                		echo '<img src="'.$album->path_cover.'" data-thumb="'.$album->path_thumb.'"/>';
+		                	}
+								
 	                		foreach($album->gallery_dtls as $item) {
 				        		echo '<img src="'.$item->path_image.'" data-thumb="'.$item->path_thumb.'"/>';
 				        	}

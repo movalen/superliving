@@ -58,7 +58,7 @@
 		);
 		
 		echo '<div style="background:#333; display:inline-block; margin:5px; padding:5px; width:18.8%;">';
-			echo "<img src='".$item->path_thumb."'  data-toggle='modal' data-target='#fullImage' data-image='".$item->path_image."' class='thumbnail' style='display:inline-block; width:100%; border-radius:0px;'/>";
+			echo "<img src='".$item->path_thumb."'  data-toggle='modal' data-target='#fullImage' data-image='".$item->path_image."' class='thumbnail' style='display:inline-block; width:100%; border-radius:0px; height:150px;'/>";
 			echo '<div>';
 				?>
 					<button type="button" 
