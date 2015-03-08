@@ -22,7 +22,7 @@
 <form class="form-horizontal" role="form" action="admin/categorys/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Title : </label>
+		<label for="title" class="col-sm-2 control-label" >Title<span style="color: red">*</span> : </label>
 		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control" autofocus maxlength="512"'); ?></div>
 	</div>
 	

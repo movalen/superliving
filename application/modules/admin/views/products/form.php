@@ -31,16 +31,18 @@
 		
 		$('form').validate({
 			rules: {
+				category:{required:true },
 				category_id:{required:true },
 				model_number:{required:true },
 				model_size:{required:true }
 				<? if(empty($rs->path_thumb)) { ?>,path_image:{required:true} <? } ?>
 			},
 			messages: {
+				category:{required:'Please select category.' },
 				category_id:{required:'Please select sub category.' },
 				model_number:{required:'Please identify.' },
 				model_size:{required:'Please identify.' }
-				<? if(empty($rs->path_thumb)) { ?>,path_image:{required:'Please attach thumbnail image.'} <? } ?>
+				<? if(empty($rs->path_thumb)) { ?>,path_image:{required:'Please attach image.'} <? } ?>
 			}
 		});
 	});
@@ -56,11 +58,11 @@
 <form class="form-horizontal" role="form" action="admin/products/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Category : </label>
-		<div class="col-lg-4"><?php echo form_dropdown(false, get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '-- Select category --'); ?></div>
+		<label for="title" class="col-sm-2 control-label" >Category<span style="color: red">*</span> : </label>
+		<div class="col-lg-4"><?php echo form_dropdown('category', get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '-- Select category --'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Sub category : </label>
+		<label for="title" class="col-sm-2 control-label" >Sub category<span style="color: red">*</span> : </label>
 		<div class="col-lg-4">
 			<?php
 				if(empty($rs->category->parent->id)) {
@@ -73,19 +75,19 @@
 		</div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Model number : </label>
+		<label for="title" class="col-sm-2 control-label" >Model number<span style="color: red">*</span> : </label>
 		<div class="col-lg-4"><?php echo form_input('model_number', @$rs->model_number, 'class="form-control" maxlength="50"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Size : </label>
+		<label for="title" class="col-sm-2 control-label" >Size<span style="color: red">*</span> : </label>
 		<div class="col-lg-4"><?php echo form_input('model_size', @$rs->model_size, 'class="form-control" maxlength="50"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Image : </label>
+		<label for="title" class="col-sm-2 control-label" >Image<span style="color: red">*</span> : </label>
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_thumb)) {
 				echo anchor('admin/products/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
-				echo "<img src='".$rs->path_image."' class='thumbnail' style='min-width:200px; min-height:200px;'><hr>";
+				echo "<img src='".$rs->path_image."' class='thumbnail' style='min-width:200px; min-height:200px; width:500px; height:500px;'><hr>";
 			} ?>
 			<input type='file' name='path_image'>
 		</div>

@@ -14,6 +14,7 @@ class Gallery_dtls extends Admin_Controller {
 		$data['no'] = 0;
 
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
 		$this->template->build("gallery_dtls/index", @$data);
 	}
 	
@@ -53,7 +54,6 @@ class Gallery_dtls extends Admin_Controller {
 
 			$config['upload_path'] = 'uploads/gallery/';
 			$config['allowed_types'] = 'jpg|gif|png';
-			$config['create_thumb'] = true;
 			#$config['max_height'] =
 			#$config['max_width'] = 
 			
@@ -66,16 +66,33 @@ class Gallery_dtls extends Admin_Controller {
 				rename($file['full_path'], $_POST['path_image']);
 				
 				//create - Thumbnail
+				
 				$config['image_library'] = 'gd2';
 				$config['source_image'] =  $_POST['path_image'];
+				$config['new_image'] = $config['upload_path'].$file_name.'_thumb'.$file['file_ext'];
 				$config['width'] = 245;
 				$config['height'] = 100;
-				$config['create_thumb'] = true;
 				$config['maintain_ratio'] = false;
 				$this->load->library('image_lib', $config);
-				$this->image_lib->resize();
-
+				if(!$this->image_lib->resize())
+		        { 
+		            echo $this->image_lib->display_errors();
+		        }   
+				$this->image_lib->clear();
 				//end - create - thumbnail
+				
+				//resize - image
+				unset($config);
+				$config['image_library'] = 'gd2';
+				$config['source_image'] =  $_POST['path_image'];
+				$config['width'] = 850;
+				$config['height'] = 350;
+				$config['maintain_ratio'] = false;
+				$this->image_lib->initialize($config);
+				if(!$this->image_lib->resize())
+		        { 
+		            echo $this->image_lib->display_errors();
+		        } 
 			} else {
 				set_notify('error', 'Please attach files.');
 				redirect('admin/gallery_dtls/index/'.$_POST['gallery_id']);

@@ -6,6 +6,15 @@
 	img[data-target="#fullImage"]:hover {
 		border:solid 1px #555;
 	}	
+	
+	label.error {
+		display:inline-block;
+		width:auto;
+		color:#f00;
+		font-style:italic;
+		line-height:35px;
+	}
+	
 </style>
 <!-- Modal#fullImage -->
 	<div class="modal fade text-center" id="fullImage">
@@ -92,5 +101,14 @@
 				modal.find('.modal-body').html('<img src="'+button.data('image')+'">');
 			})
 		//End - modal
+		
+		$('form').validate({
+			rules: {
+				path_image:{required:true}
+			},
+			messages: {
+				path_image:{required:'Please attach image.'}
+			}
+		});
 	});
 </script>

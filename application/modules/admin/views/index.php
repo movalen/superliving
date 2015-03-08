@@ -1,1 +1,1 @@
-<h2>ยินดีต้อนรับเข้าสู่ระบบ</h2>
+<h2>Welcome <?php echo $this->session->userdata('user_name') ?></h2>

@@ -24,6 +24,7 @@ if(!function_exists('login')) {
 		
 		if($foo->id) {
 			$CI->session->set_userdata('id', $foo->id);
+			$CI->session->set_userdata('user_name', $foo->name);
 			return true;
 		} else {
 			return false;

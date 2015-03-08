@@ -52,11 +52,11 @@
 <form class="form-horizontal" role="form" action="admin/gallerys/save/<?php echo $rs->id?>" method="post"  enctype="multipart/form-data">
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Title : </label>
+		<label for="title" class="col-sm-2 control-label" >Title<span style="color: red">*</span> : </label>
 		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control" autofocus maxlength="80"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Cover image : </label>
+		<label for="title" class="col-sm-2 control-label" >Cover image<span style="color: red">*</span> : </label>
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_cover)) {
 				echo anchor('admin/gallerys/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
