@@ -118,10 +118,10 @@
 	        			foreach($category as $item) {
 	        				echo '<li ';
 								if(@$menu_category[1] == 'products' && @$menu_category[3] == $item->id) {
-									echo 'class="active"';
+									echo ' class="active"';
 								}
-	        				echo ' style="width:'.(100/count($category->all)).'%;">';
-								echo '<a style="display:inline-block; width:100%;" href="products/lists/'.$item->id.'">'.$item->title.'</a>';
+	        				echo '>';
+								echo '<a href="products/lists/'.$item->id.'">'.$item->title.'</a>';
 	        				echo '</li>';
 	        				#echo '<li><a href="product/'.$item->id.'">'.$item->title.'</a></li>';
 	        			}
