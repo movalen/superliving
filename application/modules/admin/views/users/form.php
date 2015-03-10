@@ -24,22 +24,22 @@
 	
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Name : </label>
-		<div class="col-lg-4"><?php echo form_input('name', @$rs->name, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_input('name', @$rs->name, 'class="form-control" maxlength="80"'); ?></div>
 	</div>
 	
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Username : </label>
-		<div class="col-lg-4"><?php echo form_input('user', @$rs->user, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_input('user', @$rs->user, 'class="form-control" maxlength="20"'); ?></div>
 	</div>
 	<hr>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Password : </label>
-		<div class="col-lg-4"><?php echo form_password('pass', false, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_password('pass', false, 'class="form-control" maxlength="20"'); ?></div>
 	</div>
 	
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Re-Password : </label>
-		<div class="col-lg-4"><?php echo form_password('repass', false, 'class="form-control"'); ?></div>
+		<div class="col-lg-4"><?php echo form_password('repass', false, 'class="form-control" maxlength="20"'); ?></div>
 	</div>
 	
 	

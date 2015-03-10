@@ -34,15 +34,15 @@
 				category:{required:true },
 				category_id:{required:true },
 				model_number:{required:true },
-				model_size:{required:true }
-				<? if(empty($rs->path_thumb)) { ?>,path_image:{required:true} <? } ?>
+				model_size:{required:true },
+				path_image:{<? if(empty($rs->path_thumb)) { ?>required:true, <? } ?>accept: "jpg, jpeg, png, gif"} 
 			},
 			messages: {
 				category:{required:'Please select category.' },
 				category_id:{required:'Please select sub category.' },
 				model_number:{required:'Please identify.' },
-				model_size:{required:'Please identify.' }
-				<? if(empty($rs->path_thumb)) { ?>,path_image:{required:'Please attach image.'} <? } ?>
+				model_size:{required:'Please identify.' },
+				path_image:{<? if(empty($rs->path_thumb)) { ?>required:'Please attach image.', <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)"}
 			}
 		});
 	});

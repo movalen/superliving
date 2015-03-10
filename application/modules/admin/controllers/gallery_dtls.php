@@ -15,6 +15,7 @@ class Gallery_dtls extends Admin_Controller {
 
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/additional-methods.min.js'></script>");
 		$this->template->build("gallery_dtls/index", @$data);
 	}
 	

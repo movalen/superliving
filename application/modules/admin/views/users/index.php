@@ -67,7 +67,11 @@
 					<td class='text-center'>
 						<? 
 							echo anchor('admin/users/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Edit', 'class="btn btn-sm btn-warning"').' ';
-							echo anchor('admin/users/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> Delete', 'class="btn btn-delete btn-sm btn-danger"');
+							
+							if ($item->id != $this->session->userdata('id')) {
+								echo anchor('admin/users/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> Delete', 'class="btn btn-delete btn-sm btn-danger"');
+							}
+							
 						?>
 					</td>
 				</tr>

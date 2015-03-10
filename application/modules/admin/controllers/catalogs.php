@@ -19,6 +19,7 @@ class Catalogs extends Admin_Controller {
 
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/additional-methods.min.js'></script>");
 		$this->template->build('catalogs/form', @$data);
 	}
 		public function delete_file($field = false, $id = false) {
@@ -55,27 +56,40 @@ class Catalogs extends Admin_Controller {
 					$file_name = uniqid();
 					$_POST['path_cover'] = $config['upload_path'].$file_name.$file['file_ext'];
 					rename($file['full_path'], $_POST['path_cover']);
+				} else {
+					set_notify('error', 'Please attach files.');
+					redirect('admin/catalogs/form/'.$id);
 				}
 			}
 			
 			//file
 			if(!empty($_FILES['path_file']['tmp_name'])) {
-				//Clear old image
+				//Clear old file
 				if(!empty($data->path_file)) {
 					unlink($data->path_file);
 					$_POST['path_file'] = '';
 				}
 				
-				$config['upload_path'] = 'uploads/catalog/file/';
-				$config['allowed_types'] = 'pdf';
-				$this->load->library('upload', $config);
-				if($this->upload->do_upload('path_file')) {
-					$file = $this->upload->data();
-					$file_name = uniqid();
-					$_POST['path_file'] = $config['upload_path'].$file_name.$file['file_ext'];
-					rename($file['full_path'], $_POST['path_file']);
+				 $correct_type = array('.pdf');
+				 $type_file = strrchr($_FILES['path_file']['name'],".");
+				 $name =  'uploads/catalog/file/'.uniqid().$type_file;
+				if(in_array($type_file, $correct_type)) {
+						$file = array(
+							'tmp'=> $_FILES['path_file']['tmp_name'],
+							'target'=> $name
+						);
+
+					if(!move_uploaded_file($file['tmp'], $file['target'])) {
+						set_notify('error', 'Error:Can\'t upload files.');
+					}else{
+						$_POST['path_file'] = $name;
+					}
+				}else{
+					set_notify('error', 'Please attach files type PDF');
+					redirect('admin/catalogs/form/'.$id);
 				}
 			}
+			
 		//End - upload files
 		
 		$data->from_array($_POST);

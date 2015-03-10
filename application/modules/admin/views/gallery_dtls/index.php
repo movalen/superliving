@@ -45,6 +45,7 @@
 	?>
 	<input type='file' name='path_image' style="display:inline-block;"> 
 	<? echo form_submit(false, 'Add image.', 'class="btn btn-success"'); ?>
+	<div id="error_path_image"></div>
 </form>
 <hr>
 <?
@@ -104,11 +105,19 @@
 		
 		$('form').validate({
 			rules: {
-				path_image:{required:true}
+				path_image:{required:true, accept: "jpg, jpeg, png, gif"}
 			},
 			messages: {
-				path_image:{required:'Please attach image.'}
-			}
+				path_image:{required:'Please attach image.', accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)"}
+			},
+			errorPlacement: function(error, element) 
+   			{
+		        if (element.attr("name") == "path_image") {
+		        	$('#error_path_image').html(error);
+		        } else {
+		        	error.insertAfter(element);
+		        }
+		   }
 		});
 	});
 </script>

@@ -63,14 +63,14 @@
 	$(function(){
 		$('form').validate({
 			rules: {
-				title:{'required':true }
-				<? if(empty($rs->path_file)) { ?> , path_file:{required:true} <? } ?>
-				<? if(empty($rs->path_cover)) { ?> , path_cover:{required:true} <? } ?>
+				title:{required:true },
+				path_file:{<? if(empty($rs->path_file)) { ?> required:true, <? } ?> accept: "pdf"}, 
+				path_cover:{<? if(empty($rs->path_cover)) { ?> required:true, <? } ?> accept: "jpg, jpeg, png, gif"}
 			},
 			messages: {
-				title : {'required':'Please identify'}
-				<? if(empty($rs->path_file)) { ?> , path_file:{required:'Please attach file catalog.'} <? } ?>
-				<? if(empty($rs->path_cover)) { ?> , path_file:{required:'Please attach image cover.'} <? } ?>
+				title : {required:'Please identify'}, 
+				path_file:{<? if(empty($rs->path_file)) { ?> required:'Please attach file catalog.', <? } ?> accept: "Please attach file type PDF"},
+				path_cover:{<? if(empty($rs->path_cover)) { ?> required:'Please attach image cover.', <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)"}
 			}
 		});
 	});

@@ -31,12 +31,12 @@
 		
 		$('form').validate({
 			rules: {
-				title:{required:true }
-				<? if(empty($rs->path_cover)) { ?> , path_cover:{ required:true } <? } ?>
+				title:{required:true }, 
+				path_cover:{ <? if(empty($rs->path_cover)) { ?>required:true, <? } ?> accept: "jpg, jpeg, png, gif" }
 			},
 			messages: {
-				title:{required:'Please identify.' }
-				<? if(empty($rs->path_cover)) { ?> , path_cover:{ required:'Please attach image cover.' } <? } ?>
+				title:{required:'Please identify.' }, 
+				path_cover:{ <? if(empty($rs->path_cover)) { ?>required:'Please attach image cover.' , <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)" } 
 			}
 		});
 	});

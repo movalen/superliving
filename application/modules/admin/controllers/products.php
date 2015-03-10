@@ -54,6 +54,7 @@ class Products extends Admin_Controller {
 		
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/additional-methods.min.js'></script>");
 		$this->template->build('products/form', @$data);
 	}
 
@@ -62,12 +63,10 @@ class Products extends Admin_Controller {
 		
 		//Upload files
 			//Clear old image
-				if(!empty($_POST['path_thumb'])) {
+				if(!empty($_FILES['path_image']['tmp_name']) && !empty($data['rs']->path_thumb)) {
 					unlink($data['rs']->path_thumb);
-					$_POST['path_thumb'] = '';
-				}
-				if(!empty($_POST['path_image'])) {
 					unlink($data['rs']->path_image);
+					$_POST['path_thumb'] = '';
 					$_POST['path_image'] = '';
 				}
 			//End - clear old image

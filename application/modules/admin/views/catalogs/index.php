@@ -74,7 +74,7 @@
 							if(!empty($item->path_cover)) {
 								echo '<img src="';
 									echo $item->path_cover;
-								echo '" style="width:120px;">';
+								echo '" style="width:120px;height:149px">';
 							} else {
 								echo '<span style="color:#aaa;">ไม่พบข้อมูลภาพ</span>';
 							}

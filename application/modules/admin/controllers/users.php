@@ -8,6 +8,7 @@ class Users extends Admin_Controller {
 	
 	public function index() {
 		$data['row'] = new User();
+		$data['row']->where('id !=', $this->session->userdata('id'));
 		$data['row']->get_page();
 		$data['no'] = 0;
 	
