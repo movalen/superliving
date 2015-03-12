@@ -6,7 +6,7 @@
     	
     	
     <?
-    	if(count($album->gallery_dtls->all) == 0) {
+    	if((count($album->gallery_dtls->all) == 0) && empty($album->path_cover)) {
     		echo '<div style="color:#bbb; text-align:center; height:350px; padding-top:120px;">No image</div>';
     	} else {
   	  ?>
@@ -14,11 +14,6 @@
 	    	<div class="row" align="center">
 	    		<div class="slider-wrapper theme-default">
 		            <div id="slider_project_gallery" class="nivoSlider" style="height: 350px; width: 850px;">
-		            	<!--
-		                <img src="images/201412121534064730.jpg" data-thumb="images/201412121534064730.jpg" alt="" />
-		                <img src="images/201412121534243780.jpg" data-thumb="images/201412121534243780.jpg" alt="" />
-		                <img src="images/201412260857166770.jpg" data-thumb="images/201412260857166770.jpg" alt="" />
-		               -->
 		                <?
 		                	if(!empty($album->path_cover)) {
 		                		echo '<img src="'.$album->path_cover.'" data-thumb="'.$album->path_thumb.'"/>';

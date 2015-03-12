@@ -1,64 +1,65 @@
 <?php
-class Gallery_dtls extends Admin_Controller {
+class Hilights extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
 	}
 	
-	public function index($id = false) {
-		if(!$id) {
-			redirect('admin/gallerys');
-		}
-		
-		$data['rs'] = new Gallery($id);
+	public function index() {
+		$data['row'] = new Hilight();
+		$data['row']->get_page();
 		$data['no'] = 0;
 
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
+		$this->template->build("hilights/index", @$data);
+	}
+	
+
+	public function form($id=false) {
+		$data['rs'] = new Hilight($id);
+		
+		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/additional-methods.min.js'></script>");
-		$this->template->build("gallery_dtls/index", @$data);
+		$this->template->build('hilights/form', @$data);
 	}
 	
-	public function delete($id = false) {
-		if(!$id) {
-			redirect('admin/gallerys');
-		}
+	
+	public function delete_image($id = false) {
+		if(!$id) { redirect('admin/product'); }
+		$data = new Hilight($id);
+		unlink($data->path_image);
+		$data->path_image = null;
+		unlink($data->path_thumb);
+		$data->path_thumb = null;
+		$data->save();
 		
-		$data = new Gallery_dtl($id);
-		$gallery_id = $data->gallery_id;
-		
-		@unlink($data->path_image);
-		#$data->path_image = null;
-		
-		@unlink($data->path_thumb);
-		#$data->path_thumb = null;
-		$data->delete();
-		set_notify('success', 'Delete image complete.');
-		redirect('admin/gallery_dtls/index/'.$gallery_id);
+		redirect('admin/hilights/form/'.$id);
 	}
 	
-	public function save() {
-		$data['rs']  = new Gallery_dtl();
+	
+
+	public function save($id = false) {
+		$data['rs']  = new Hilight($id);
 		
 		//Upload files
 			//Clear old image
-				if(!empty($data['rs']->path_thumb)) {
+				if(!empty($_FILES['path_image']['tmp_name']) && !empty($data['rs']->path_thumb)) {
 					unlink($data['rs']->path_thumb);
-					$_POST['path_thumb'] = '';
-				}
-				if(!empty($data['rs']->path_image)) {
 					unlink($data['rs']->path_image);
+					$_POST['path_thumb'] = '';
 					$_POST['path_image'] = '';
 				}
 			//End - clear old image
 			
-
+			
 			//Upload file
-				$config['upload_path'] = 'uploads/gallery';
+				$config['upload_path'] = 'uploads/hilight';
 				$config['allowed_types'] = 'jpg|gif|png';
 				
 			$this->load->library('upload', $config);
 			
+
 			if($this->upload->do_upload('path_image')) {
 				//--Rename file thumb
 				$file = $this->upload->data();
@@ -98,7 +99,22 @@ class Gallery_dtls extends Admin_Controller {
 			$data['rs']->from_array($_POST);
 			$data['rs']->save();
 		//End - save data
-		set_notify('success', 'บันทึกข้อมูลเสร็จสิ้น');
-		redirect('admin/gallery_dtls/index/'.$_POST['gallery_id']);
+		set_notify('success', 'Save complete.');
+		redirect('admin/hilights');
+	}
+	
+	public function delete($id = false) {
+		$data['rs'] = new Hilight($id);
+		if(!empty($data['rs']->path_thumb)) {
+			unlink($data['rs']->path_thumb);
+			$_POST['path_thumb'] = '';
+		}
+		if(!empty($data['rs']->path_image)) {
+			unlink($data['rs']->path_image);
+			$_POST['path_image'] = '';
+		}
+		$data['rs']->delete();
+		set_notify('success', 'Delete complete.');
+		redirect('admin/hilights');
 	}	 	
 }

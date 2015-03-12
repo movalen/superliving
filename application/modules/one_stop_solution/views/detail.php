@@ -1,15 +1,15 @@
 <div class="container container_body">
 	<div class="col-lg-12 header_list">
-        <h3 class="page-header">INTERIOR DESIGN</h3>
+        <h3 class="page-header"><? echo $head['title']; ?></h3>
     	<div class="col-md-12 breadcrumb">
-        		<a href="index.php">HOME</a> >
-        		<a href="one_stop_solution.php">ONE STOP SOLUTION</a> >
-                <span class="active">INTERIOR DESIGN</span>
+        		<a href="">HOME</a> >
+        		<a href="one_stop_solution">ONE STOP SOLUTION</a> >
+                <span class="active"><? echo $head['title']; ?></span>
         </div>
     </div>
     	
     <div class="col-md-12">
-    	<p>INTERIOR DESIGN DETAIL DETAIL DETAIL.</p>
+    	<p><? echo $rs->detail; ?></p>
     </div>   
     
     <div class="col-md-12"><hr /></div>

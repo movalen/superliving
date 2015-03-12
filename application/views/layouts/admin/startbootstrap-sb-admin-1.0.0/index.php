@@ -77,109 +77,7 @@
                 
             </div>
             <? echo anchor('admin/signout', 'Sign out', 'class="btn btn-danger" style="float:right; margin:10px;"'); ?>
-            <? /*
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav sr-only">
-                <li class="dropdown">
-                    <a href="media/template/admin/#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="media/template/admin/#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <!-- <img class="media-object" src="media/template/admin/http://placehold.it/50x50" alt=""> -->
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="media/template/admin/#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <!-- <img class="media-object" src="media/template/admin/http://placehold.it/50x50" alt=""> -->
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="media/template/admin/#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <!-- <img class="media-object" src="media/template/admin/http://placehold.it/50x50" alt=""> -->
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="media/template/admin/#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media/template/admin/#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="media/template/admin/#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="media/template/admin/#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="media/template/admin/#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="media/template/admin/#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="media/template/admin/#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="media/template/admin/#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-             */ ?>
+
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <?
             	$path_info = @explode('/', $_SERVER['PATH_INFO']);
@@ -189,10 +87,29 @@
 						'link' => 'admin',
 						'active' => array('', 'index')
 					),
+					'Manage site' => array(
+						'type' => 'collape', 
+						'name' => 'managesite',
+						'child' => array(
+							'Change logo' => array(
+								'link' =>'admin/logos',
+								'active' => array('logos')
+							),
+							'Hilight' => array(
+								'link' => 'admin/hilights',
+								'active' => array('hilights')
+							)
+						)
+					),
+					'ONE STOP SOLUTION' => array(
+						'link' => 'admin/links',
+						'active' => array('links')
+						),
 					'Profile' => array(
 						'link' => 'admin/profiles',
 						'active' => array('profiles')
 					),
+					
 					'Product data' => array(
 						'type' => 'collape',
 						'name' => 'product',

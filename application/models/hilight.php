@@ -1,10 +1,11 @@
-<?php
+ 	<?php
 /**
  * User Model
  */
-class Int_contact extends ORM {
+class Hilight extends ORM {
 	
-	var $table = "int_contact";
+	var $table = "hilight";
+	
 	
 	function __construct($id=null) {
 		parent::__construct($id);

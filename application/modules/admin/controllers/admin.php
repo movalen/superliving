@@ -8,6 +8,67 @@ class Admin extends Admin_Controller {
 	public function index() {
 		$this->template->build('index');
 	}
+	
+	public function logos() {
+		$data['rs'] = new Contact();
+		$data['rs']->where('type', 'logo')->get(1);
+		
+		if(!empty($_FILES)) {
+			$_POST['type'] = 'logo';
+			$config['upload_path'] = 'uploads/site';
+			$config['allowed_types'] = 'jpg|gif|png';
+			
+			$this->load->library('upload', $config);
+			
+			if($this->upload->do_upload('logo')) {
+				//--Rename file thumb
+				$file = $this->upload->data();
+				$file_name = uniqid();
+				$_POST['detail'] = $config['upload_path'].'/'.$file_name.$file['file_ext'];
+				rename($file['full_path'], $_POST['detail']);
+				
+				//resize - files 
+					$config['image_library'] = 'gd2';
+					$config['source_image'] =  $_POST['detail'];
+					$config['width'] = '50';
+					$config['height'] = '50';
+					$config['maintain_ratio'] = false;
+					$this->load->library('image_lib', $config);
+					$this->image_lib->resize();
+
+				
+				if(!empty($data['rs']->detail)) {
+					unlink($data['rs']->detail);
+				}	
+					
+				@$data['rs']->type = 'logo';
+				@$data['rs']->detail = $_POST['detail'];
+				
+				$data['rs']->save();
+				set_notify('success', 'Save complete');
+				redirect('admin/logos');
+			} else {
+				set_notify('error', 'Please attach files.');
+				redirect('admin/logos');
+			}
+		}
+
+		$this->template->build('logos', @$data);
+	}
+	public function delete_logo() {
+		$logo = new Contact();
+		$logo->where('type', 'logo')->get(1);
+		
+		
+		if(!empty($logo->detail)) {
+			unlink($logo->detail);
+			$logo->detail = null;
+			$logo->save();
+		}
+		set_notify('success', 'Delete complete.');
+		redirect('admin/logos');
+	}
+
 
 	public function profiles() {
 		$data['rs'] = new User($this->session->userdata('id'));

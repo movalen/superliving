@@ -62,18 +62,31 @@
 				)
 			)
 		);
+		
+		
+		
+		//Header
+			//--logo
+			$logo = new Contact();
+			$logo
+				->where('type', 'logo')
+				->get(1);
+			$logo = @$logo->detail;
+			$logo = (empty($logo))?'<span style="line-height:50px;">Logo</span>':'<img src="'.$logo.'" />';
+			
 	?>
 </head><!--/head-->
 
 <body>
 	
 	 <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="border-radius:0px;">
         <div class="col-md-12">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header" style="height: 65px">
-                <a class="navbar-brand" >Logo</a>
+            <div class="navbar-header" style="min-height: 65px; display:inline-block; padding:8px; margin:0px;">
+                <a class="navbar-brand" style="float:none; display:block; padding:0px;"> <? echo $logo; ?> </a>
             </div>
+            
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="height: 60px">
                 <ul class="nav navbar-nav navbar-right" style="height: 65px">
