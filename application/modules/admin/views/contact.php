@@ -39,6 +39,7 @@
 
 <script language="JavaScript">
 	$(function(){
+		tinymce.triggerSave();
 		$('form').validate({
 			rules: {
 				detail:{'required':true }

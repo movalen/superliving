@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-//Localhost
+//server
 /*$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'c1royalrain';
+$db['default']['username'] = 'superliv_user1';
+$db['default']['password'] = 'superliv2015';
+$db['default']['database'] = 'superliv_db1';
 /**/
 
 //Localhost
