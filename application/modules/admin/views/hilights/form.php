@@ -1,4 +1,4 @@
-<style type='text/css'>
+	<style type='text/css'>
 	label.error {
 		display:inline-block;
 		width:auto;
@@ -44,7 +44,7 @@
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Image<span style="color: red">*</span> : </label>
+		<label for="title" class="col-sm-2 control-label" >Image : </label>
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_thumb)) {
 				echo anchor('admin/hilights/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
@@ -54,11 +54,11 @@
 		</div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Title<span style="color: red">*</span> : </label>
+		<label for="title" class="col-sm-2 control-label" >Title : </label>
 		<div class="col-lg-4"><?php echo form_input('title', @$rs->title, 'class="form-control" maxlength="80"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Detail<span style="color: red">*</span> : </label>
+		<label for="title" class="col-sm-2 control-label" >Detail : </label>
 		<div class="col-lg-4"><?php echo form_textarea('detail', @$rs->detail, 'class="form-control"'); ?></div>
 	</div>
 	

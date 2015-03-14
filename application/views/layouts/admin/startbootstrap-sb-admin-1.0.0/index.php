@@ -87,6 +87,11 @@
 						'link' => 'admin',
 						'active' => array('', 'index')
 					),
+					'Profile' => array(
+						'link' => 'admin/profiles',
+						'active' => array('profiles')
+					),
+					
 					'Manage site' => array(
 						'type' => 'collape', 
 						'name' => 'managesite',
@@ -105,10 +110,6 @@
 						'link' => 'admin/links',
 						'active' => array('links')
 						),
-					'Profile' => array(
-						'link' => 'admin/profiles',
-						'active' => array('profiles')
-					),
 					
 					'Product data' => array(
 						'type' => 'collape',
