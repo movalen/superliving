@@ -3,7 +3,7 @@ class Products extends Public_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		#$this->template->set('active', 'product_list');
+		$this->template->set('active', 'product_list');
 	}
 	
 	public function lists($id = false, $child_id = false) {

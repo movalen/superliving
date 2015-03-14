@@ -29,8 +29,7 @@
 				'link' => '',
 				'active' => array(
 					'', 
-					'home',
-					'products'
+					'home'
 				)
 			),
 			1 => array(
