@@ -30,7 +30,7 @@ class Admin extends Admin_Controller {
 				//resize - files 
 					$config['image_library'] = 'gd2';
 					$config['source_image'] =  $_POST['detail'];
-					$config['width'] = '50';
+					$config['width'] = '250';
 					$config['height'] = '50';
 					$config['maintain_ratio'] = false;
 					$this->load->library('image_lib', $config);
