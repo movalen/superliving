@@ -158,7 +158,7 @@
         </div>
         <!-- /.container -->
     </nav>
-    <div style="min-height:575px;">
+    <div style="min-height:25em;">
     	<? echo $template['body']; ?>
     </div>
 	

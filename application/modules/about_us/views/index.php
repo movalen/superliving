@@ -7,7 +7,7 @@
         </div>
     </div>
     	
-    <div class="col-md-12" style='min-height:370px;'>
+    <div class="col-md-12">
     	<? echo $aboutus->detail; ?>
     </div>   
     
