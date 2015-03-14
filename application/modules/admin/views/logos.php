@@ -1,3 +1,17 @@
+<script language="javascript">
+	$(function(){		
+		$('form').validate({
+			rules: {
+				logo:{<? if(empty($rs->detail)) { ?>required:true, <? } ?>accept: "jpg, jpeg, png, gif"} 
+			},
+			messages: {
+				logo:{<? if(empty($rs->detail)) { ?>required:'Please attach image.', <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)"}
+			}
+		});
+	});
+</script>
+
+
 <h2>Change logo</h2>
 <hr>
 <form class="form-horizontal" role="form" action="admin/logos" method="post"  enctype="multipart/form-data">
@@ -24,4 +38,5 @@
 		</div>
 	</div>
 </form>
+
 

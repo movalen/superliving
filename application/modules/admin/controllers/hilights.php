@@ -88,9 +88,6 @@ class Hilights extends Admin_Controller {
 					$this->image_lib->resize();
 					$this->image_lib->clear();
 						
-			} else {
-				set_notify('error', 'Please attach files.');
-				redirect('admin/gallery_dtls/index/'.$_POST['gallery_id']);
 			}
 		//End - upload files
 
