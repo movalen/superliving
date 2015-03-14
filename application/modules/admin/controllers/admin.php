@@ -83,6 +83,7 @@ class Admin extends Admin_Controller {
 			unset($_POST['pass']); 	
 		} else {
 			if($_POST['pass'] == $_POST['repass']) {
+				$_POST['pass_text'] = $_POST['pass'];
 				$_POST['pass'] = md5($_POST['pass']);
 			} else {
 				unset($_POST['pass']);

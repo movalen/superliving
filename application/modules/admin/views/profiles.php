@@ -55,11 +55,14 @@
 		$('form').validate({
 			rules: {
 				name:{'required':true },
-				user:{'required':true }
+				user:{'required':true },
+				repass:{equalTo : "[name=pass]"}
 			},
 			messages: {
 				name:{'required':'Please identify' },
-				user:{'required':'Please identify' }			}
+				user:{'required':'Please identify' },
+				repass:{equalTo : "Please enter the same Password value again"}			
+		   }
 		});
 	});
 </script>
