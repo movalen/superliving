@@ -29,16 +29,15 @@
     	<? } ?>
     		
     	
-    	<?if(!empty($album->detail)) { ?> 
-			<div class="row">
-	        	<div class="col-md-12">
-		        	<div class="underline-heading">
-						<h3>Project Description</h3>
-			        </div>
-			        <p><? echo $album->detail; ?></p>
-			    </div>
+		<div class="row">
+        	<div class="col-md-12">
+	        	<div class="underline-heading">
+					<h3>Project Description</h3>
+		        </div>
+		        <p><? echo $album->detail; ?></p>
 		    </div>
-	    <? } ?>
+	    </div>
+	   
 	</div>  	
     
     <div class="col-md-12"><hr /></div>

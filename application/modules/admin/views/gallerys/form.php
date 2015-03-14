@@ -11,9 +11,22 @@
 		line-height:35px;
 	}
 </style>
-
+<script src="media/addon/tinymce/tinymce.min.js"></script>
 <script language="javascript">
 	$(function(){
+		tinymce.init({
+		    selector: "textarea",
+		    plugins: [
+		        "advlist autolink lists link image charmap print preview anchor",
+		        "searchreplace visualblocks code fullscreen",
+		        "insertdatetime media table contextmenu paste"
+		    ],
+		    width:"700px",
+		    //resize: false,
+		    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+		});
+		
+		tinymce.triggerSave();
 		$('#category').on('change', function(){
 			$('[name=category_id]').html('<option value="">Loading...</option>').attr('disabled', true);
 			if(!$(this).val()) {
@@ -32,11 +45,13 @@
 		$('form').validate({
 			rules: {
 				title:{required:true }, 
-				path_cover:{ <? if(empty($rs->path_cover)) { ?>required:true, <? } ?> accept: "jpg, jpeg, png, gif" }
+				path_cover:{ <? if(empty($rs->path_cover)) { ?>required:true, <? } ?> accept: "jpg, jpeg, png, gif" },
+				detail:{required:true }
 			},
 			messages: {
 				title:{required:'Please identify.' }, 
-				path_cover:{ <? if(empty($rs->path_cover)) { ?>required:'Please attach image cover.' , <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)" } 
+				path_cover:{ <? if(empty($rs->path_cover)) { ?>required:'Please attach image cover.' , <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)" },
+				detail:{required:'Please identify.' }, 
 			}
 		});
 	});
@@ -63,6 +78,13 @@
 				echo "<img src='".$rs->path_thumb."' class='thumbnail'><hr>";
 			} ?>
 			<input type='file' name='path_cover'>
+		</div>
+	</div>
+	
+	<div class="form-group" >
+		<label for="title" class="col-sm-2 control-label" >Project Description : </label>
+		<div class="col-lg-4">
+			<? echo form_textarea('detail', @$rs->detail, 'class="form-control" style="width:400px;" autofocus'); ?>
 		</div>
 	</div>
 	
