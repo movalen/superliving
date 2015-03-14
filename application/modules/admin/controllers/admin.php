@@ -30,7 +30,7 @@ class Admin extends Admin_Controller {
 				//resize - files 
 					$config['image_library'] = 'gd2';
 					$config['source_image'] =  $_POST['detail'];
-					$config['width'] = '50';
+					$config['width'] = '250';
 					$config['height'] = '50';
 					$config['maintain_ratio'] = false;
 					$this->load->library('image_lib', $config);
@@ -53,6 +53,8 @@ class Admin extends Admin_Controller {
 			}
 		}
 
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
+		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/additional-methods.min.js'></script>");
 		$this->template->build('logos', @$data);
 	}
 	public function delete_logo() {

@@ -16,17 +16,9 @@
 	$(function(){		
 		$('form').validate({
 			rules: {
-				category:{required:true },
-				category_id:{required:true },
-				model_number:{required:true },
-				model_size:{required:true },
 				path_image:{<? if(empty($rs->path_thumb)) { ?>required:true, <? } ?>accept: "jpg, jpeg, png, gif"} 
 			},
 			messages: {
-				category:{required:'Please select category.' },
-				category_id:{required:'Please select sub category.' },
-				model_number:{required:'Please identify.' },
-				model_size:{required:'Please identify.' },
 				path_image:{<? if(empty($rs->path_thumb)) { ?>required:'Please attach image.', <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)"}
 			}
 		});
@@ -44,7 +36,7 @@
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Image : </label>
+		<label for="title" class="col-sm-2 control-label" >Image <span style="color: red">*</span> : </label>
 		<div class="col-lg-4">
 			<? if(!empty($rs->path_thumb)) {
 				echo anchor('admin/hilights/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
