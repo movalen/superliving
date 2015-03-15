@@ -3,7 +3,6 @@
 <head>
 	<base href="<?php echo base_url()?>" ></base>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><? echo $template['title']; ?></title>
     
     <!-- Bootstrap Core CSS -->

@@ -22,7 +22,7 @@
 		    <div class="col-md-12">
 		    	<div class="text-center">
 		    		<div>
-		    			<iframe src="<? echo $catalog->path_file; ?>" style="width: 800px; height: 500px"></iframe>
+		    			<iframe src="<? echo $catalog->path_file; ?>" style="width: 90%; height: 500px"></iframe>
 		    		</div>
 		    	</div>
 		    </div>   
