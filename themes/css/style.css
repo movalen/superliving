@@ -119,15 +119,28 @@ hr {
 	border-bottom: 1px solid #ff5f01;
 }
 
-.menu_sub_product > li > a:hover {
-	color: #ff5f01;
-	background-color: #fff;
+.menu_sub_product > li > a:hover,
+.menu_sub_product > li > a:focus {
+	color: #ff5f01  !important;
+	background-color: #fff  !important;
 }
 
 .menu_sub_product > li.active > a,
-.menu_sub_product > li.active > a:hover {
-	color: #ff5f01;
-	background-color: #333;
+.menu_sub_product > li.active > a:hover,
+.menu_sub_product > li.active > a:focus {
+	color: #ff5f01  !important;
+	background-color: #333 !important;
+}
+
+.menu_sub_product1 li {
+	margin-left:10px;
+	border-bottom: 0px solid #ff5f01;
+}
+
+.menu_sub_product1 > li.active > a,
+.menu_sub_product1 > li.active > a:hover {
+	color: #ff5f01  !important;
+	background-color: #f5f5f5 !important;
 }
 
 .div_col-4_product_menu {

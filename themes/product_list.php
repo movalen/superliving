@@ -50,8 +50,24 @@
 	        <div class="col-md-4 div_col-4_product_menu">
 	        	<div class="series"><h4>SERIES</h4></div>
 	            <ul class="nav nav-pills nav-stacked menu_sub_product">
-				  	<li class="active"><a href="product_list.php">POLTSHED TILES</a></li>
-			        <li><a href="product_list.php">PORCELAIN GLAZED TILES</a></li>
+				  	<li class="active">
+				  		<a href="javascript:;" data-toggle="collapse" data-target="#product_1">
+					      POLTSHED TILES<i class="fa fa-fw fa-caret-down"></i>
+					    </a>
+					    <ul class="collapse in nav menu_sub_product1" id="product_1">
+					     <li class="active"><a href="product_list.php">- POLTSHED TILES SUB 1</a></li>
+					     <li><a href="product_list.php">- POLTSHED TILES SUB 2</a></li>
+					    </ul>
+				  	</li>
+			        <li>
+			        	<a href="javascript:;" data-toggle="collapse" data-target="#product_2">
+					      PORCELAIN GLAZED TILES<i class="fa fa-fw fa-caret-down"></i>
+					    </a>
+					    <ul class="collapse nav menu_sub_product1" id="product_2">
+					     <li><a href="product_list.php">- PORCELAIN GLAZED TILES SUB 1</a></li>
+					     <li><a href="product_list.php">- PORCELAIN GLAZED TILES SUB 2</a></li>
+					    </ul>
+			        </li>
 			        <li><a href="product_list.php">FULLY POLISHED PORCELAIN GRAZED</a></li>
 			        <li><a href="product_list.php">CERAMIC WALL TILES</a></li>
 			        <li><a href="product_list.php">CRYSTALLTE PORCELAIN TILES</a></li>
