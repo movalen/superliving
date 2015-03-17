@@ -21,6 +21,12 @@ class Products extends Public_Controller {
 			$child_id = (empty($child_id))?$data['cat_1']->child->id:$child_id;
 			$data['child'] = new Category($child_id);
 			
+			//if has child
+			if($data['child']->sub_cat_status == 1 && count($data['child']->child->all) > 1) {
+				$data['child'] = $data['child']->child;
+			}
+			
+			
 			//redirect if sub category is disabled.
 			if(!empty($data['child']->id) && $data['child']->status != 1) {
 				redirect('products/lists/'.$id);

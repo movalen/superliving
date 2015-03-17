@@ -36,9 +36,40 @@
             		} else {
             			foreach($cat_1->child as $item) {
             				if($item->status == 1) {
-            					echo '<li ';
-									echo ($item->id == @$child->id) ? 'class="active"' : null ;
-		            			echo '><a href="products/lists/'.$cat_1->id.'/'.$item->id.'">'.$item->title.'</a></li>';
+            					if(count($item->child->all) > 1 && $item->sub_cat_status == 1) {
+            						$main_status = 0;
+            						foreach($item->child as $item2) {
+            							if($child->id == $item2->id) {
+            								$main_status = 1;
+            							} 
+            						}
+            						echo '<li ';
+										echo (($item->id == @$child->id) || $main_status == 1) ? 'class="active"' : null ;
+			            			echo '>';
+			            				echo '<a href="javascript:;" data-toggle="collapse" data-target="#cat_'.$item->id.'">';
+			            					echo $item->title.' <i class="fa fa-fw fa-caret-down"></i>';
+			            				echo '</a>';
+										
+										echo '<ul class="nav menu_sub_product1 collapse ';
+											echo ($main_status == 1) ? 'in' : false ;
+										echo '" id="cat_'.$item->id.'">';
+										foreach($item->child as $item2) {
+											echo '<li';
+												echo ($item2->id == $child->id)?' class="active" ':false;
+											echo '>';
+												echo '<a href="products/lists/'.$item->parent_id.'/'.$item2->id.'">';
+												echo ' - '.$item2->title;
+												echo '</a>';
+											echo '</li>';
+										}
+										echo '</ul>';
+			            			echo '</li>';
+            					} else {
+            						echo '<li ';
+										echo ($item->id == @$child->id) ? 'class="active"' : null ;
+			            			echo '><a href="products/lists/'.$cat_1->id.'/'.$item->id.'">'.$item->sub_cat_status.$item->title.'</a></li>';
+            					}
+	            					
             				}	
 	            		}
             		}	
