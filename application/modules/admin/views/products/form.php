@@ -14,31 +14,56 @@
 
 <script language="javascript">
 	$(function(){
-		$('#category').on('change', function(){
-			$('[name=category_id]').html('<option value="">Loading...</option>').attr('disabled', true);
+		$('[name=cat_1]').on('change', function(){
+			$('[name=cat_2]').html('<option value="">Loading...</option>').attr('disabled', true);
 			if(!$(this).val()) {
-				$('[name=category_id]').html('<option value="">--Please select category.--</option>');
+				$('[name=cat_2]').html('<option value="">--Please select category.--</option>');
 			} else {
 				$.get('admin/products/coption_category/'+$(this).val(), function(data){
+					$('#sector_cat_3').hide();
+					$('[name=category_id]').val('');
 					if(data == 0) {
-						$('[name=category_id]').html('<option value="">--No data.--</option>');
+						$('[name=cat_2]').html('<option value="">--No data.--</option>');
 					} else {
-						$('[name=category_id]').html(data).attr('disabled', false);
+						$('[name=cat_2]').html(data).attr('disabled', false);
 					}
 				});
 			}	
 		});
 		
+		$('[name=cat_2]').on('change', function(){
+			$('[name=cat_3]').html('<option value="">Loading...</option>').attr('disabled', true);
+			if(!$(this).val()) {
+				$('[name=cat_3]').html('<option value="">--Please select category.--</option>');
+			} else {
+				$.get('admin/products/coption_category/'+$(this).val(), function(data){
+					if(data == 0) {
+						$('#sector_cat_3').hide();
+						$('[name=category_id]').val($('[name=cat_2]').val());
+						$('[name=cat_3]').html('<option value="">--No data.--</option>');
+					} else {
+						$('#sector_cat_3').show();
+						$('[name=category_id]').val('');
+						$('[name=cat_3]').html(data).attr('disabled', false);
+					}
+				});
+			}
+		});
+		
+		$('[name=cat_3]').on('change', function(){
+			$('[name=category_id]').val($('[name=cat_3]').val());
+		});
+		
 		$('form').validate({
 			rules: {
-				category:{required:true },
+				cat_1:{required:true },
 				category_id:{required:true },
 				model_number:{required:true },
 				model_size:{required:true },
 				path_image:{<? if(empty($rs->path_thumb)) { ?>required:true, <? } ?>accept: "jpg, jpeg, png, gif"} 
 			},
 			messages: {
-				category:{required:'Please select category.' },
+				cat_1:{required:'Please select category.' },
 				category_id:{required:'Please select sub category.' },
 				model_number:{required:'Please identify.' },
 				model_size:{required:'Please identify.' },
@@ -59,21 +84,42 @@
 	<? echo form_hidden('status', (empty($rs->status))?1:$rs->status); ?>
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Category<span style="color: red">*</span> : </label>
-		<div class="col-lg-4"><?php echo form_dropdown('category', get_option('id', 'title', 'category where parent_id is null'), @$rs->category->parent->id, 'id="category" class="form-control" style="width:auto;"', '-- Select category --'); ?></div>
-	</div>
-	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Sub category<span style="color: red">*</span> : </label>
 		<div class="col-lg-4">
-			<?php
-				if(empty($rs->category->parent->id)) {
-					echo form_dropdown('category_id', array(), false, 'class="form-control" disabled="true"', '-- Please select category --');
-				} else {
-					$cat_option = @(get_option('id', 'title', "category where parent_id = '".@$rs->category->parent->id."'"))?get_option('id', 'title', "category where parent_id = '".$rs->category->parent->id."'"):array();
-					echo form_dropdown('category_id', $cat_option, @$rs->category_id, 'class="form-control"', '-- Select Sub category --');
-				}	
+			<?php 
+				echo form_dropdown('cat_1', get_option('id', 'title', 'category where parent_id is null or parent_id = 0'), @$cat['cat_1'], 'id="category" class="form-control" style="width:auto;"', '-- Select category --'); 
 			?>
 		</div>
 	</div>
+	
+	<div class="form-group" >
+		<label for="title" class="col-sm-2 control-label" >
+			Sub category<span style="color: red">*</span> :
+			<? echo form_input('category_id',false, 'class="sr-only"'); ?> 
+		</label>
+		<div class="col-lg-4">
+			<?php
+				if(empty($cat['cat_2'])) {
+					echo form_dropdown('cat_2', array(), false, 'class="form-control" disabled="true"', '-- Please select category --');
+				} else {
+					echo form_dropdown('cat_2', get_option('id', 'title', "category where parent_id = '".@$cat['cat_1']."'"), @$cat['cat_2'], 'class="form-control"');
+				}
+			?>
+		</div>
+	</div>
+	
+	<div class="form-group" id="sector_cat_3" style="<? echo (empty($cat['cat_3']))?'display:none;':null; ?>">
+		<label for="title" class="col-sm-2 control-label" ></label>
+		<div class="col-lg-4">
+			<?php
+				if(empty($cat['cat_3'])) {
+					echo form_dropdown('cat_3', array(), false, 'class="form-control"');
+				} else {
+					echo form_dropdown('cat_3', @get_option('id', 'title', "category where parent_id = '".@$cat['cat_2']."'"), @$cat['cat_3'], 'class="form-control"');
+				}
+			?>
+		</div>
+	</div>
+	
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >Model number<span style="color: red">*</span> : </label>
 		<div class="col-lg-4"><?php echo form_input('model_number', @$rs->model_number, 'class="form-control" maxlength="50"'); ?></div>

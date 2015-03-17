@@ -1,4 +1,4 @@
-<h3><? echo $head_title; ?></h3>
+<h3>Category</h3>
 <hr>
 
 <table class="table table-striped">
@@ -8,7 +8,7 @@
 			<th style="width:80px;">Status</th>
 			<th>Title</th>
 			<th class='text-center' style="width:165px;">
-				<? echo anchor('admin/categorys/form/'.$parent_id, '<span class="glyphicon glyphicon-plus"></span> Add', 'class="btn btn-sm btn-info"'); ?>
+				<? echo anchor('admin/categorys/form', '<span class="glyphicon glyphicon-plus"></span> Add', 'class="btn btn-sm btn-info"'); ?>
 			</th>
 		</tr>
 	</thead>
@@ -23,7 +23,6 @@
 					'label' => ($item->status == 1)?'On':'Off',
 					'class' => ($item->status == 1)?'btn-primary':'btn-danger'
 				);
-				$item->parent_id = (empty($item->parent_id))?0:$item->parent_id; 
 			?>
 				<tr>
 					<td><? echo $no; ?></td>
@@ -33,19 +32,10 @@
 							class="btn <? echo $btn_status['class']; ?>" 
 							data-loading-text="Loading..." ><? echo $btn_status['label']; ?></button>
 					</td>
-					<td>
-						<? 
-						if($layer_index == 0 && ($item->sub_cat_status == 1 || empty($item->parent_id))) { ?>
-							<? echo anchor('admin/categorys/index/'.$item->id, $item->title); ?> 
-							(<? echo count($item->child->all); ?>) 
-						<? } else { ?> 
-							<? echo $item->title; ?>
-						<? } ?>
-							
-					</td>
+					<td><? echo anchor('admin/categorys/sub_index/'.$item->id, $item->title); ?> (<? echo count($item->child->all); ?>)</td>
 					<td class='text-center'>
 						<? 
-							echo anchor('admin/categorys/form/'.$item->parent_id.'/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Edit', 'class="btn btn-sm btn-warning"').' ';
+							echo anchor('admin/categorys/form/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Edit', 'class="btn btn-sm btn-warning"').' ';
 							if(count($item->child->all) == 0) {
 								echo anchor('admin/categorys/delete/'.$item->id, '<span class="glyphicon glyphicon-remove"></span> Delete', 'class="btn btn-delete btn-sm btn-danger"');
 							} 

@@ -21,7 +21,7 @@ class Products extends Admin_Controller {
 			} else {
 				echo '<option value="">--Sub category--</option>';
 				foreach($data['parent'] as $item) {
-					echo '<option value="'.$item->id.'">'.$item->title.'</option>';
+					echo '<option value="'.$item->id.'" >'.$item->title.'</option>';
 				}
 			}	
 		}
@@ -49,14 +49,37 @@ class Products extends Admin_Controller {
 		$this->template->build("products/index", @$data);
 	}
 	
+	
 	public function form($id=false) {
 		$data['rs'] = new Product($id);
 		
+		
+		$tmp = $this->get_headTitle($data['rs']->category_id);
+		if(!empty($tmp)) {
+			foreach($tmp as $key => $item) {
+				$data['cat']['cat_'.(count($tmp)-$key)] = $item;
+			}
+		}
+
 		$this->template->append_metadata("<script src='media/script/confirm_delete.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js'></script>");
 		$this->template->append_metadata("<script src='media/addon/jquery_validate/jquery-validation-1.13.1/dist/additional-methods.min.js'></script>");
 		$this->template->build('products/form', @$data);
 	}
+		private function get_headTitle($id = false, $layer_index = 0) {
+			if(!$id) { return false; }
+			
+			$cat = new Category($id);
+			$rs[$layer_index] = $cat->id;
+			
+			if(!empty($cat->parent->id)) {
+				$layer_index++;
+				$tmp = $this->get_headTitle($cat->parent->id, $layer_index);
+				$rs = array_merge($rs, $tmp);
+			}
+			
+			return $rs;
+		}
 
 	public function save($id = false) {
 		$data['rs']  = new Product($id);
