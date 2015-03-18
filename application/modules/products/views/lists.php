@@ -67,7 +67,7 @@
             					} else {
             						echo '<li ';
 										echo ($item->id == @$child->id) ? 'class="active"' : null ;
-			            			echo '><a href="products/lists/'.$cat_1->id.'/'.$item->id.'">'.$item->sub_cat_status.$item->title.'</a></li>';
+			            			echo '><a href="products/lists/'.$cat_1->id.'/'.$item->id.'">'.$item->title.'</a></li>';
             					}
 	            					
             				}	
