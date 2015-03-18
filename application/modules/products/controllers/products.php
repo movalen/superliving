@@ -22,7 +22,7 @@ class Products extends Public_Controller {
 			$data['child'] = new Category($child_id);
 			
 			//if has child
-			if($data['child']->sub_cat_status == 1 && count($data['child']->child->all) > 1) {
+			if($data['child']->sub_cat_status == 1 && count($data['child']->child->all) >= 1) {
 				$data['child'] = $data['child']->child;
 			}
 			

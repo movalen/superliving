@@ -36,7 +36,7 @@
             		} else {
             			foreach($cat_1->child as $item) {
             				if($item->status == 1) {
-            					if(count($item->child->all) > 1 && $item->sub_cat_status == 1) {
+            					if(count($item->child->all) >= 1 && $item->sub_cat_status == 1) {
             						$main_status = 0;
             						foreach($item->child as $item2) {
             							if($child->id == $item2->id) {
