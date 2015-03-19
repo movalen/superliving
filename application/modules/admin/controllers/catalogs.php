@@ -100,6 +100,12 @@ class Catalogs extends Admin_Controller {
 	
 	public function delete($id) {
 		$data = new Catalog($id);
+		if(!empty($data->path_file)) {
+			unlink($data->path_file);
+		}
+		if(!empty($data->path_cover)) {
+			unlink($data->path_cover);
+		}
 		$data->delete();
 		set_notify('success', 'Delete complete.');
 		redirect('admin/catalogs');

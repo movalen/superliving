@@ -52,7 +52,7 @@
 	<tbody>
 		<?
 			if(count($row->all) == 0) {
-				echo '<tr><td colspan="5" class="text-center" style="color:#aaa;"> ไม่พบข้อมูล</td></tr>';
+				echo '<tr><td colspan="6" class="text-center" style="color:#aaa;"> ไม่พบข้อมูล</td></tr>';
 			}
 			foreach($row as $item) {
 				$no++;
