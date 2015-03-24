@@ -90,7 +90,7 @@
 					</form>
 				</div>
 			</div>
-			
+			<div class="col-md-12">
 			<?
 				if(count($rs->all) == 0) {
 					echo '<div style="color:#aaa; text-align:center;"> No data </div>';
@@ -99,8 +99,10 @@
 						product_block($item);
 					}
 				}
-					
+			echo "</div>";	
+			echo '<div class="col-md-12 text-center">';
 				echo $rs->pagination();
+			echo '</div>';
 			?>
 			
         </div> <!-- col-md-8 -->
