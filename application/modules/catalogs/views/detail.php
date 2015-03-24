@@ -20,9 +20,17 @@
     	} else {
     	?> 
 		    <div class="col-md-12">
+		    	<?php
+		    		$file_name = '';
+		    		if ($catalog->path_file) {
+		    			$path_file = explode('file/', $catalog->path_file); 
+						$tmp_file_name = @$path_file['1'];
+		    		}
+		    	 	$file_name = (empty($tmp_file_name))?'':$tmp_file_name;
+		    	?>
 		    	<div class="text-center">
 		    		<div>
-		    			<iframe src="<? echo $catalog->path_file; ?>" style="width: 90%; height: 500px"></iframe>
+		    			<iframe src="<?php echo base_url(); ?>themes/read_pdf.php?file_name=<?php echo $file_name; ?>" style="width: 90%; height: 500px"></iframe>
 		    		</div>
 		    	</div>
 		    </div>   
