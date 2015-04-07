@@ -1,15 +1,19 @@
 <?
 	function product_block($obj) {
+		$thumb = (empty($obj->path_thumb))?$obj->path_image:$obj->path_thumb;
+		$thumb = (empty($thumb))?'media/images/noimage_coverpage.png':$thumb;
+		
+		$image = (empty($obj->path_image))?$thumb:$obj->path_image;
 		?>
 		<div class="col-md-4 div_col-4_product_list text-center">
             <div class="thumbnail">
-            	<a href="<? echo $obj->path_image; ?>" data-fancybox-group="button" class="fancybox-buttons" 
+            	<a href="<? echo $image; ?>" data-fancybox-group="button" class="fancybox-buttons" 
             		title="<span>
 		                    	<b style='word-wrap: break-word;'>Model Number: <? echo $obj->model_number; ?></b>
 		                    	<p style='word-wrap: break-word;'>Size : <? echo $obj->model_size; ?></p>
 		                    </span>"
             	>
-                    <img class="img-responsive" style="width: 180px; height: 180px" src="<? echo $obj->path_image; ?>" alt="">
+                    <img class="img-responsive" style="width: 180px; height: 180px" src="<? echo $thumb; ?>" alt="">
                 </a>
                 <div class="caption detail_product">
                     <p title="<? echo $obj->model_number; ?>">Model Number : <? echo $obj->model_number; ?></p>

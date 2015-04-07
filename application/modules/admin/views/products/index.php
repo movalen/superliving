@@ -77,7 +77,17 @@
 										data-loading-text="บันทึก..." ><? echo $btn_status['label']; ?></button>
 								</td>
 								<td class='text-center'>
-									<? echo (!chk_image_path($item->path_image))?'n/a':'<img class="thumb" data-toggle="modal" data-target="#fullImage" data-title="'.$item->model_number.'" data-image="'.$item->path_image.'" src="'.$item->path_thumb.'">'; 
+									<? 
+										if(!empty($item->path_thumb)) {
+											echo (!chk_image_path($item->path_thumb))?'n/a':'<img class="thumb" style="width:50px;" data-toggle="modal" data-target="#fullImage" data-title="'.$item->model_number.'" data-image="'.$item->path_thumb.'" src="'.$item->path_thumb.'">';
+											
+										} else if(!empty($item->path_image)) {
+											echo (!chk_image_path($item->path_image))?'n/a':'<img class="image" style="width:50px;" data-toggle="modal" data-target="#fullImage" data-title="'.$item->model_number.'" data-image="'.$item->path_image.'" src="'.$item->path_image.'">';
+											
+										} else {
+											echo 'no image.';
+										}
+											 
 									?>
 								</td>
 								<td class='text-center'><span class='glyphicon glyphicon-info-sign' title="<? echo $item->categorys->parent->title.' > '.$item->categorys->title; ?>"></span></td>

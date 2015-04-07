@@ -58,7 +58,7 @@ $db['default']['database'] = 'superliv_db1';
 //Localhost
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
-$db['local']['password'] = '1234';
+$db['local']['password'] = '';
 $db['local']['database'] = 'superliving';
 /**/
 

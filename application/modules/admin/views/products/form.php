@@ -60,14 +60,18 @@
 				category_id:{required:true },
 				model_number:{required:true },
 				model_size:{required:true },
-				path_image:{<? if(empty($rs->path_thumb)) { ?>required:true, <? } ?>accept: "jpg, jpeg, png, gif"} 
+				<? /*
+				path_image:{<? if(empty($rs->path_thumb)) { ?>required:true, <? } ?>accept: "jpg, jpeg, png, gif"}
+				 */?> 
 			},
 			messages: {
 				cat_1:{required:'Please select category.' },
 				category_id:{required:'Please select sub category.' },
 				model_number:{required:'Please identify.' },
 				model_size:{required:'Please identify.' },
+				<? /*
 				path_image:{<? if(empty($rs->path_thumb)) { ?>required:'Please attach image.', <? } ?> accept: "Please attach file type IMAGE (jpg, jpeg, png, gif)"}
+				 */ ?>
 			}
 		});
 	});
@@ -94,7 +98,13 @@
 	<div class="form-group" >
 		<label for="title" class="col-sm-2 control-label" >
 			Sub category<span style="color: red">*</span> :
-			<? echo form_input('category_id',false, 'class="sr-only"'); ?> 
+			<?
+				$cat_id = null;
+				$cat_id = (empty($cat_id) && !empty($cat['cat_3']))?$cat['cat_3']:$cat_id;
+				$cat_id = (empty($cat_id) && !empty($cat['cat_2']))?$cat['cat_2']:$cat_id;
+				$cat_id = (empty($cat_id) && !empty($cat['cat_1']))?$cat['cat_1']:$cat_id;
+				echo form_input('category_id',$cat_id, 'class="sr-only"'); 
+			?> 
 		</label>
 		<div class="col-lg-4">
 			<?php
@@ -129,11 +139,21 @@
 		<div class="col-lg-4"><?php echo form_input('model_size', @$rs->model_size, 'class="form-control" maxlength="50"'); ?></div>
 	</div>
 	<div class="form-group" >
-		<label for="title" class="col-sm-2 control-label" >Image<span style="color: red">*</span> : </label>
-		<div class="col-lg-4">
+		<label for="title" class="col-sm-2 control-label" >Cover<span style="color: red">*</span> : </label>
+		<div class="col-lg-4" style="background:#eee; padding:10px;">
 			<? if(!empty($rs->path_thumb)) {
+				echo anchor('admin/products/delete_image/'.$rs->id.'/thumb', 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
+				echo "<img src='".$rs->path_thumb."' class='thumbnail' style='min-width:200px; min-height:200px; width:100px; height:100px;'><hr>";
+			} ?>
+			<input type='file' name='path_thumb'>
+		</div>
+	</div>
+	<div class="form-group" >
+		<label for="title" class="col-sm-2 control-label" >Image<span style="color: red">*</span> : </label>
+		<div class="col-lg-4" style="background:#eee; padding:10px;">
+			<? if(!empty($rs->path_image)) {
 				echo anchor('admin/products/delete_image/'.$rs->id, 'Delete image', 'class="btn btn-delete btn-sm btn-danger" style="position:absolute; margin:10px;"');
-				echo "<img src='".$rs->path_image."' class='thumbnail' style='min-width:200px; min-height:200px; width:500px; height:500px;'><hr>";
+				echo "<img src='".$rs->path_image."' class='thumbnail' style='min-width:200px; min-height:200px; width:300px; height:300px;'><hr>";
 			} ?>
 			<input type='file' name='path_image'>
 		</div>
