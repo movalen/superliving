@@ -121,8 +121,8 @@ class Products extends Admin_Controller {
 					
 					$config['image_library'] = 'gd2';
 					$config['source_image'] =  $_POST['path_thumb'];
-					$config['width'] = 100;
-					$config['height'] = 100;
+					$config['width'] = 180;
+					$config['height'] = 180;
 					$this->load->library('image_lib', $config);
 					$this->image_lib->resize();
 					
