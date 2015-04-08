@@ -4,9 +4,21 @@
 		$thumb = (empty($thumb))?'media/images/noimage_coverpage.png':$thumb;
 		
 		$image = (empty($obj->path_image))?$thumb:$obj->path_image;
+		
+		//กรณีเป็น thumbnail เก่า (ภาพไม่ชัด จะทำการใช้ภาพปัจจุบันไปเลย)
+		$exp_img = explode('.', $obj->path_image);
+		$exp_thumb = explode('.', $obj->path_thumb);
+		
+		if($exp_img[0].'_thumb' == $exp_thumb[0]) {
+			$thumb = $obj->path_image;
+		}
 		?>
 		<div class="col-md-4 div_col-4_product_list text-center">
             <div class="thumbnail">
+            	<?
+            		
+				
+            	?>
             	<a href="<? echo $image; ?>" data-fancybox-group="button" class="fancybox-buttons" 
             		title="<span>
 		                    	<b style='word-wrap: break-word;'>Model Number: <? echo $obj->model_number; ?></b>
