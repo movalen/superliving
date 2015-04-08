@@ -51,6 +51,12 @@
 		  margin:0px;
 		  padding:0px;
 		}
+		
+		.pagination span.current {
+			background:#428bca;
+			color:#fff;
+			
+		}
 	</style>
 	
 	<? echo $template['metadata']; ?>
