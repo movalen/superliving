@@ -41,8 +41,12 @@
 
 <div class="row">
     <div class="col-lg-12">
+    	<? if($row->paged->total_pages != 1) { ?>
+    		<div class='text-center'><? echo $row->pagination(); ?></div>
+    	<? } ?>
+    		
     	<div class="table-responsive">
-			<table class="table table-striped">
+    		<table class="table table-striped">
 				<thead>
 					<tr>
 						<th style="width:50px;">#</th>
@@ -107,7 +111,9 @@
 				</tbody>
 			</table>
 		</div>
-		<div class='text-center'><? echo $row->pagination(); ?></div>
+		<? if($row->paged->total_pages != 1) { ?>
+    		<div class='text-center'><? echo $row->pagination(); ?></div>
+    	<? } ?>
 	</div>
 </div>
 
