@@ -49,7 +49,7 @@ class categorys extends Admin_Controller {
 		$data = $this->get_headTitle($parent_id);
 		
 		
-		$data['parent_id'] = $parent_id;
+		$data['parent_id'] = (empty($parent_id))?0:$parent_id;
 		
 		$data['rs'] = new Category($id);
 		
@@ -59,7 +59,16 @@ class categorys extends Admin_Controller {
 		$this->template->build('categorys/form', @$data);
 	}
 	
-	
+	public function reset_parentid() {
+			$tmp = new Category();
+			$tmp->where('parent_id', null);
+			$tmp->get();
+			foreach($tmp as $item) {
+				$item->parent_id = 0;
+				$item->save();
+			}
+		echo 'Reset parent id complete';
+	}
 	/*
 	public function form($id=false) {
 		$data['rs'] = new Category($id);

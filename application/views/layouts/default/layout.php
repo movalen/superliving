@@ -123,7 +123,10 @@
 
 	        			$category = new Category();
 						$category	->where('status', 1)
-									->where('parent_id is null')
+									//->group_start()
+										->where('parent_id', 0)
+									//	->where('parent_id is null')
+									//->group_end()
 									->get();
 
 	        			foreach($category as $item) {
