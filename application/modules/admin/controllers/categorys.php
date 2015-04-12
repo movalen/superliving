@@ -58,7 +58,7 @@ class categorys extends Admin_Controller {
 		$this->template->append_metadata('<script src="media/addon/jquery_validate/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>');
 		$this->template->build('categorys/form', @$data);
 	}
-	
+	/*
 	public function reset_parentid() {
 			$tmp = new Category();
 			$tmp->where('parent_id', null);
