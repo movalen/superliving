@@ -177,7 +177,7 @@
 	            	?>
 	            </div>
 	        </div>
-	        COPYRIGHT © Super Living Co.,Ltd.
+	        COPYRIGHT © SuperLiving Co.,Ltd.
         <!-- /.row -->
 	   	</div>
 	</div>

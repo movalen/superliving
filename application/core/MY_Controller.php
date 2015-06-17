@@ -52,7 +52,7 @@ class Public_Controller extends Base_Controller {
  
     public function __construct() {
         parent::__construct();
-        $this->template->title("Super Living Co.,Ltd.");
+        $this->template->title("SuperLiving Co.,Ltd.");
 		$this->template->set_layout("default/layout");
 		
 		#$value = new Coverpage();
